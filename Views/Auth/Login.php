@@ -7,6 +7,17 @@
     <title>Doc | Login</title>
 </head>
 <!-- component -->
+<?php require_once ("../../Services/Auth/LoginServices.php");
+require_once ("../../Config/Config.php");
+ ?>
+
+<?php 
+    $LoginService = new LoginService($pdo);
+    if(isset($_POST["register"])) {
+       $LoginService->Rgister($_POST["username"],$_POST["password"]);
+    }
+ ?>
+
 <body class="antialiased bg-gradient-to-br from-green-100 to-white">
     <div class="container mx-auto px-36">
       <div
@@ -39,7 +50,7 @@
             <h2 class="text-2xl font-bold text-gray-800 text-left mb-5">
               Sigin
             </h2>
-            <form action="" class="w-full">
+            <form method="post" class="w-full">
               <div id="input" class="flex flex-col w-full my-5">
                 <label for="username" class="text-gray-500 mb-2"
                   >Username</label
@@ -47,6 +58,7 @@
                 <input
                   type="text"
                   id="username"
+                  name="username"
                   placeholder="Please insert your username"
                   class="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                 />
@@ -58,13 +70,15 @@
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   placeholder="Please insert your password"
                   class="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                 />
               </div>
               <div id="button" class="flex flex-col w-full my-5">
                 <button
-                  type="button"
+                  type="submit"
+                  name="register"
                   class="w-full py-4 bg-green-600 rounded-lg text-green-100"
                 >
                   <div class="flex flex-row items-center justify-center">

@@ -16,4 +16,24 @@ class LoginService {
         }
 
     }
+    public function logout() {
+    }
+    public function checkLogin($username, $password) {
+    }
+    public function Rgister($username, $password) {
+        $stmp = $this->pdo->prepare("select * from users where username = ?");
+        $stmp->execute(array($username));
+        
+        if($stmp->fetch(PDO::FETCH_ASSOC)!=null) {
+            $message = "username already taken";
+            return false;
+        }
+        else{
+            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+            $stmpI = $this->pdo->prepare("insert into users(username,password) values(?,?);");
+        
+            $stmpI->execute([$username, $hashPassword]);
+            return true;
+        }
+    }
 }
