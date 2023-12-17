@@ -1,6 +1,5 @@
 <?php
-    require_once("../Config/Config.php");
-    require_once("../Models/Tutorail.php");
+    
     class TutorialService {
         private $pdo;
         public function __construct($dbo) {
@@ -8,9 +7,9 @@
         }
 
         // Crud operations 
-        public function CreateTutorial(Tutorial $tutorial) {
+        public function CreateTutorial($Title,$Content,$Image,$Author) {
             $stmp = $this->pdo->prepare("insert into tutorials(title,content,image,author) values(?,?,?,?)");
-            $stmp->execute(array("title"=> $tutorial->getTitle(),"content"=> $tutorial->getContent(),"image"=> $tutorial->getImage(),"author"=> $tutorial->getAuthor()));
+            $stmp->execute([$Title, $Content, $Image, $Author]);
             return $this->pdo->lastInsertId();
         }
         public function getTutorial($id) {
@@ -27,11 +26,11 @@
             foreach ($tutorials as $tutorialData) {
                 // Create Tutorial objects and add them to the array
                 $tutorialObjects[] = new Tutorial(
-                    $tutorialData['id'],
-                    $tutorialData['title'],
-                    $tutorialData['content'],
-                    $tutorialData['image'],
-                    $tutorialData['author']
+                    $tutorialData["id"],
+                    $tutorialData["title"],
+                    $tutorialData["content"],
+                    $tutorialData["image"],
+                    $tutorialData["author"],
                 );
             }
 

@@ -14,7 +14,23 @@ require_once ("../../Config/Config.php");
 <?php 
     $LoginService = new LoginService($pdo);
     if(isset($_POST["register"])) {
-       $LoginService->Rgister($_POST["username"],$_POST["password"]);
+        try{
+
+            $result = $LoginService->login($_POST["username"],$_POST["password"]);
+            if($result) {
+                header("Location:"."../Admin/Dashbord.php");
+            }
+            else {
+              $TitleAlert ="Error";
+              $MessageAlert = "Something wrong";
+              $ColorAlert = "red";
+              include ("../Components/Alert.php");
+            }
+            
+          }catch(Exception $e){
+            echo $e->getMessage();
+        }
+
     }
  ?>
 

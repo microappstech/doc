@@ -10,24 +10,24 @@
   <link rel="shortcut icon" href="./About/img/home-hero.png" type="image/x-icon">
 </head>
 <body class="bg-gray-100">
+    <?php require_once("./Includes/NavBar.php") ?>
 <div class="main bg-white w-[94%] mx-auto">
 
-  <!-- component -->
 <div class="bg-white relative   flex items-center  n justify-center overflow-hidden z-50 ">
      
      <div class="relative mx-auto h-full px-4  pb-20   md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
          <div class="flex flex-col items-center justify-between lg:flex-row py-16">
              <div class=" relative ">
                  <div class="lg:max-w-xl lg:pr-5 relative z-40">
-                     <h2 class="mb-6 max-w-lg text-5xl font-light leading-snug tracking-tight text-g1 sm:text-7xl sm:leading-snug">
-                         We make you look
+                     <h2 class="mb-6 max-w-lg text-5xl font-light leading-snug tracking-tight text-g1 sm:text-5xl sm:leading-snug">
+                         We make Learning
                          <span class="my-1 inline-block border-b-8 border-g4 bg-white px-4 font-bold text-g4 animate__animated animate__flash">different</span>
                      </h2>
                      <p class="text-base text-gray-700">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                          accusantium doloremque it.</p>
                      <div class="mt-10 flex flex-col items-center md:flex-row">
-                         <a href="/" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-green-600 px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-blue-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto">
-                             View More</a>
+                         <a href="./Views/tutorials.php" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-green-600 px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-blue-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto">
+                             Get Startd</a>
                          <a href="/" aria-label="" class="group inline-flex items-center font-semibold text-g1">Watch how
                              it works
                              <svg xmlns="http://www.w3.org/2000/svg" class="ml-4 h-6 w-6 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -77,11 +77,11 @@
         <div class="container flex flex-col items-center gap-16 mx-auto my-16">
           <div class="flex flex-col gap-7">
             <div class="flex flex-col gap-2 px-6 text-center w-10/12 mx-auto">
-              <h2 class="text-3xl font-extrabold leading-tight lg:text-4xl text-dark-grey-900">Well, shoot! The page you're looking for couldn't be found.</h2>
-              <p class="text-base font-medium leading-7 text-dark-grey-600">We hit a snag... maybe it's time to head back to our main page.</p>
+              <h2 class="text-3xl font-extrabold leading-tight lg:text-4xl text-dark-grey-900"> Well, Here you can find all your favorite technologies!</h2>
+              <p class="text-base font-medium leading-7 text-dark-grey-600">Enjoy learning and test you skills with all quizes. <span class="font-extrabold text-purple-500">All Free</span>.</p>
             </div>
             <div class="flex items-center justify-center">
-              <button class="flex items-center justify-center py-4 text-white px-7 rounded-2xl bg-purple-blue-500 hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 transition duration-300">Go back to Homepage</button>
+              <button class="flex items-center justify-center py-4 text-white px-7 rounded-2xl bg-purple-blue-500 hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 transition duration-300">Don't forget to Support Us</button>
             </div>
           </div>
         </div>
@@ -175,7 +175,7 @@
   </div>
 <!-- End Cards Technologies -->
   </div>
-  
 </div>
+<?php include("./Includes/Footer.php") ?>
 </body>
 </html>

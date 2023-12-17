@@ -5,7 +5,7 @@ class Tutorial {
     private $content;
     private $image;
     private $author;
-    public function __construct($id, $title, $content, $image,$author) {
+    public function __construct($id=null, $title, $content, $image,$author) {
         $this->id = $id;
         $this->title = $title;
         $this->content = $content;
