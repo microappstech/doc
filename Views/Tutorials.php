@@ -19,7 +19,8 @@
         $tt = new TutorialService($pdo);
         $tutorial = $tt->getAllTutorials();
         foreach ($tutorial as $tutorial) {
-            echo $tutorial->getTitle();
+            $tt = $tutorial->getTitle();
+            echo "<h1>$tt</h1>";
         }
     ?>
       <div class='flex min-h-screen items-center justify-center min-h-screen px-24'>

@@ -1,7 +1,8 @@
 <?php include_once("../../Constants.php") ?> 
 <?php include_once("../../Config/Config.php") ?> 
-<?php include_once("../../Services/TutorialService.php") ?> 
-<?php include_once("../../Models/Tutorail.php") ?>
+<?php include_once("../../Services/SectionService.php") ?> 
+<?php include_once("../../Models/Section.php") ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -386,7 +387,7 @@
           <div
             class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row"
           >
-            <h1 class="text-2xl font-semibold whitespace-nowrap">Tutorials</h1>
+            <h1 class="text-2xl font-semibold whitespace-nowrap">Sections</h1>
             <div class="space-y-6 md:space-x-2 md:space-y-0">
               <a
               href="./AddTutorial.php"
@@ -396,7 +397,7 @@
               <span>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><g fill="none" stroke="#aeb4be" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"><circle cx="128" cy="128" r="112"/><path d="M 79.999992,128 H 176.0001"/><path d="m 128.00004,79.99995 v 96.0001"/></g></svg>
               </span>
-              <span class="text-white">Add Tutorial</span>
+              <span class="text-white">Add Section</span>
             </a>
             <!-- <a
               href="https://kamona-wd.github.io/kwd-dashboard/"
@@ -453,23 +454,15 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                       <!-- <template x-for="i in 10" :key="i"> -->
                       <?php 
-                          $tt = new TutorialService($pdo);
-                          $tutorials = $tt->getAllTutorials();
-                          foreach ($tutorials as $tutorial) { ?>
+                          $tt = new SectionService($pdo);
+                          $sections = $tt->getAllSections();
+                          foreach ($sections as $section) { ?>
                             <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                               <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                  <div class="flex-shrink-0 w-10 h-10">
-                                    <img
-                                      class="w-10 h-10 rounded-full"
-                                      src="<?php echo $tutorial->getImage() ?>"
-                                      alt=""
-                                    /> 
-                                    
-                                  </div>
                                   <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900"><?php $tutorial->getImage() ?></div>
-                                    <div class="text-sm text-gray-500"><?php echo $tutorial->getTitle() ?></div>
+                                    <div class="text-sm font-medium text-gray-900"><?php echo $section->Title ?></div>
+                                    <div class="text-sm text-gray-500"><?php echo $section->Title ?></div>
                                   </div>
                                 </div>
                               </td>

@@ -1,6 +1,4 @@
 <?php
-    require_once("../Config/Config.php");
-    require_once("../Models/Tutorail.php");
     class SectionService {
         private $pdo;
         public function __construct($dbo) {
@@ -26,14 +24,13 @@
 
             foreach ($sections as $sectionData) {
                 // Create Tutorial objects and add them to the array
-                $SectionObjects[] = new Section($sectionData);
-                // $tutorialObjects[] = new Tutorial(
-                //     $tutorialData['id'],
-                //     $tutorialData['title'],
-                //     $tutorialData['content'],
-                //     $tutorialData['image'],
-                //     $tutorialData['author']
-                // );
+                $SectionObjects[] = new Section(                    
+                    $sectionData["Id"],
+                    $sectionData["Title"],
+                    $sectionData["Description"],
+                    $sectionData["Content"],
+                    $sectionData["TutorialId"],
+                );
             }
 
             return $SectionObjects;

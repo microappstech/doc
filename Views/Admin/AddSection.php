@@ -1,7 +1,7 @@
 <?php include_once("../../Constants.php"); ?> 
-<?php include_once("../../Models/Tutorail.php"); ?> 
+<?php include_once("../../Models/Section.php"); ?> 
 <?php require_once("../../Config/Config.php"); ?> 
-<?php require_once("../../Services/TutorialService.php"); ?>
+require_once("../../Services/TutorialService.php");
 
 <html lang="en">
 <head>
@@ -15,6 +15,7 @@
   <!-- component -->
   <div>
     <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()" x-init="$refs.loading.classList.add('hidden')">
+      
       <div
         x-ref="loading"
         class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
@@ -23,7 +24,7 @@
         Loading.....
       </div> 
 
-      <!-- Sidebar backdrop -->
+      
       <div
         x-show.in.out.opacity="isSidebarOpen"
         class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
@@ -54,6 +55,7 @@
                 </svg>
               </button>
             </div>
+            
             <div
               x-show.transition="isSearchBoxOpen"
               class="fixed inset-0 z-10 bg-black bg-opacity-20"
@@ -102,9 +104,9 @@
               </div>
             </div>
 
-
+            <!-- Desktop search box -->
             <div class="items-center hidden px-2 space-x-2 md:flex-1 md:flex md:mr-auto md:ml-5">
-              
+              <!-- search icon -->
               <span>
                 <svg
                   class="w-5 h-5 text-gray-500"
@@ -402,8 +404,6 @@
                         <div class="w-full lg:w-1/2 xl:w-5/12 px-4 pt-12">
                             <div class="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
                                 <?php 
-                                require_once("../../Services/TutorialService.php");
-                                
                                 
                                 if(isset($_POST["submit"])){
                                     $TutorialService = new TutorialService($pdo);
