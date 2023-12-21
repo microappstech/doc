@@ -34,7 +34,7 @@
           <ul class="p-2 overflow-hidden">
             <li>
               <a
-                href="<?php echo("\\".ADMIN_ROOT."\\"); ?>"
+                href="<?php echo("/Views/Admin/"); ?>"
                 class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
                 :class="{'justify-center': !isSidebarOpen}"
               >
@@ -61,7 +61,7 @@
             </li>
             <li>
               <a
-                href="<?php echo "/".ADMIN_ROOT."/Tutorials.php" ?>" class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100" :class="{'justify-center': !isSidebarOpen}">
+                href="<?php echo "/Views/Admin/Tutorials.php" ?>" class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100" :class="{'justify-center': !isSidebarOpen}">
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#aeb4be" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>                </span>
                 <span :class="{ 'lg:hidden': !isSidebarOpen }">Tutorials</span>
@@ -70,7 +70,7 @@
             
             <li>
               <a
-                href="<?php echo "/".ADMIN_ROOT."/Sections.php" ?>" class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100" :class="{'justify-center': !isSidebarOpen}">
+                href="<?php echo "/Views/Admin/Sections.php" ?>" class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100" :class="{'justify-center': !isSidebarOpen}">
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="rotate(-90 12 12)"><path fill="#aeb4be" d="M2 21c0 .6.4 1 1 1h5V10H2zm14 1h5c.6 0 1-.4 1-1V10h-6zm-6 0h4V10h-4zM21 2H3c-.6 0-1 .4-1 1v5h20V3c0-.6-.4-1-1-1"/></g></svg>
                 </span>

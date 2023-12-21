@@ -390,8 +390,7 @@
             <h1 class="text-2xl font-semibold whitespace-nowrap">Sections</h1>
             <div class="space-y-6 md:space-x-2 md:space-y-0">
               <a
-              href="./AddTutorial.php"
-              target="_blank"
+              href="<?php echo "/Views/Admin/AddSection.php" ?>"
               class="inline-flex items-center justify-center px-4 py-2 space-x-1 bg-blue-800 rounded-md shadow hover:bg-opacity-20"
             >
               <span>

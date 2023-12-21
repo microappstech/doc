@@ -18,7 +18,7 @@ require_once ("../../Config/Config.php");
 
             $result = $LoginService->login($_POST["username"],$_POST["password"]);
             if($result) {
-                header("Location:"."../Admin/Dashbord.php");
+                header("Location:"."/Views/Admin/index.php");
             }
             else {
               $TitleAlert ="Error";

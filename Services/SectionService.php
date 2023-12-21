@@ -6,13 +6,13 @@
         }
 
         // Crud operations 
-        public function CreateSection(Section $section) {
-            $stmp = $this->pdo->prepare("INSERT INTO section (Title, Description,Content,TutorialId)VALUES (?,?,?,?)");
-            $stmp->execute(array("Title"=> $section->Title,"Description"=> $section->Description, "Content"=> $section->Content,"TutorialId"=> $section->TutorialId));
+        public function CreateSection($Title,$Description,$Content,$TutorialId) {
+            $stmp = $this->pdo->prepare("INSERT INTO sections (Title, Description,Content,TutorialId)VALUES (?,?,?,?)");
+            $stmp->execute([ $Title, $Description, $Content, $TutorialId]);
             return $this->pdo->lastInsertId();
         }
         public function getSectionById($id) {
-            $stmt = $this->pdo->prepare("SELECT * FROM section WHERE Id = ?");
+            $stmt = $this->pdo->prepare("SELECT * FROM sections WHERE Id = ?");
             $stmt->execute([$id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }

@@ -1,8 +1,15 @@
 <?php include_once("../../Constants.php"); ?> 
 <?php include_once("../../Models/Section.php"); ?> 
+<?php include_once("../../Models/Tutorail.php"); ?> 
 <?php require_once("../../Config/Config.php"); ?> 
-require_once("../../Services/TutorialService.php");
+<?php require_once("../../Services/SectionService.php"); ?> 
+<?php require_once("../../Services/TutorialService.php"); ?> 
+<?php
+  $service = new TutorialService($pdo);
+  $tutorials = $service->getAllTutorials();
 
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,19 +17,20 @@ require_once("../../Services/TutorialService.php");
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
     <title>Tutorial | Dashbord</title>
+    <script src="https://cdn.tiny.cloud/1/1nsjvij0ax0do9hxr8dls5xcprj83fplbppgs433utmmndp7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
   <!-- component -->
   <div>
     <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()" x-init="$refs.loading.classList.add('hidden')">
       
-      <div
-        x-ref="loading"
-        class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
-        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-      >
-        Loading.....
-      </div> 
+        <div
+          x-ref="loading"
+          class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
+          style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
+        >
+          Loading.....
+        </div>
 
       
       <div
@@ -392,31 +400,36 @@ require_once("../../Services/TutorialService.php");
                 <div class="container">
                     <div class="flex flex-wrap lg:justify-between -mx-4">
                         <div class="w-full lg:w-1/2 xl:w-6/12 px-4 pt-6">
-                            <div class="lg:mb-0">
+                            <!-- <div class="lg:mb-0">
                                 <span class="block mb-4 text-base text-primary font-light text-muted">
                                     Demo
                                 </span>
                                 <div class="border border-1 border-gray-100 w-full min-h-screen rounded shadow-lg ">
 
                                 </div>
-                            </div>
+                            </div> -->
                         </div> 
-                        <div class="w-full lg:w-1/2 xl:w-5/12 px-4 pt-12">
+                        <div class="w-full  px-4 pt-12">
                             <div class="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
                                 <?php 
                                 
                                 if(isset($_POST["submit"])){
-                                    $TutorialService = new TutorialService($pdo);
+                                    $TutorialService = new SectionService($pdo);
                                     $result = false;
                                     
-                                    $result = $TutorialService->CreateTutorial($_POST["Title"],$_POST["content"],$_POST["image"],"Hamza");                                    
+                                    $result = $TutorialService->CreateSection($_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
+                                    
                                     if($result){
                                         echo "<script>window.alert('Craeted Successfuly')</script>";
+                                    }else{
+                                      echo "<script>window.alert('Error : Something wrong happen')</script>";
                                     }
-                                }
+                                  }
+                                  
                                  ?>
                             <form method="post">
-                                <div class="mb-6">
+                              <div class="flex">
+                                <div class="mb-6 lg:w-1/2 xl:w-5/12">
                                     <input
                                         type="text"
                                         placeholder="Title"
@@ -433,12 +446,25 @@ require_once("../../Services/TutorialService.php");
                                         focus:border-primary
                                         "
                                         />
-                                </div>
+                                      </div>
+                                      <div class="mb-6  lg:w-1/2 xl:w-5/12 xl:ml-16">
+                                          <select
+                                              type="text"
+                                              name="TutorialId"
+                                              placeholder="Dscription or small resume"
+                                              class="w-full rounded py-3 px-[14px] text-body-color text-base border border-[f0f0f0] outline-none focus-visible:shadow-none focus:border-primary">
+      
+                                              <?php foreach($tutorials as $tuto) {?>
+                                                  <option value="<?php echo $tuto->getId() ?>"><?php echo $tuto->getTitle() ?></option>
+                                                <?php } ?>
+                                            </select>
+                                      </div>
+                                    </div>
                                 <div class="mb-6">
                                     <input
                                         type="text"
-                                        name="image"
-                                        placeholder="Icon"
+                                        name="Description"
+                                        placeholder="Dscription or small resume"
                                         class="
                                         w-full
                                         rounded
@@ -455,7 +481,8 @@ require_once("../../Services/TutorialService.php");
                                 <div class="mb-6">
                                     <textarea
                                         rows="6"
-                                        name="content"
+                                        id="editor"
+                                        name="Content"
                                         placeholder="Tutorial's content"
                                         class="
                                         w-full
@@ -1380,6 +1407,15 @@ require_once("../../Services/TutorialService.php");
           isSearchBoxOpen: false,
         }
       }
+      
+      tinymce.init({
+    selector: '#editor',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+    
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    
+  });
+
     </script>
 </div>
 </body>
