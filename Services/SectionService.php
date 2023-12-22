@@ -21,7 +21,24 @@
             $stmt = $this->pdo->query("SELECT * FROM Sections");
             $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $SectionObjects = [];
+            foreach ($sections as $sectionData) {
+                // Create Tutorial objects and add them to the array
+                $SectionObjects[] = new Section(                    
+                    $sectionData["Id"],
+                    $sectionData["Title"],
+                    $sectionData["Description"],
+                    $sectionData["Content"],
+                    $sectionData["TutorialId"],
+                );
+            }
 
+            return $SectionObjects;
+        }
+        public function getSectionsByTutorialId($TutorialId) {
+            $stmt = $this->pdo->query("SELECT * FROM sections WHERE TutorialId=$TutorialId");
+            //$stmt->execute([$TutorialId]);
+            $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $SectionObjects = [];
             foreach ($sections as $sectionData) {
                 // Create Tutorial objects and add them to the array
                 $SectionObjects[] = new Section(                    
