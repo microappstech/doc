@@ -9,11 +9,33 @@
         public function CreateSection($Title,$Description,$Content,$TutorialId) {
             $stmp = $this->pdo->prepare("INSERT INTO sections (Title, Description,Content,TutorialId)VALUES (?,?,?,?)");
             $stmp->execute([ $Title, $Description, $Content, $TutorialId]);
+            return $stmp;
+        }
+        public function UpdateSection($Id,$Title,$Description,$Content,$TutorialId) {
+            $stmp = $this->pdo->prepare("INSERT sections SET Title =?, Description = ?,Content = ?,TutorialId = ? where id = ?);");
+            $stmp->execute([$Title, $Description, $Content, $TutorialId, $Id]);
             return $this->pdo->lastInsertId();
         }
         public function getSectionById($id) {
             $stmt = $this->pdo->prepare("SELECT * FROM sections WHERE Id = ?");
             $stmt->execute([$id]);
+            $sec = $stmt->fetch(PDO::FETCH_ASSOC);
+            if( $sec !== null) {
+                $Section = new Section(
+                    $sec["Id"],
+                    $sec["Title"],
+                    $sec["Description"],
+                    $sec["Content"],
+                    $sec["TutorialId"],
+                );             
+            return $Section;
+        } else {
+            return null;
+        }
+        }
+        public function getSectionByIdTutorialID($sectionId, $tutorialId) {
+            $stmt = $this->pdo->prepare("SELECT * FROM sections WHERE id = ? AND tutorialid = ?");
+            $stmt->execute([$sectionId, $tutorialId]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
@@ -51,10 +73,6 @@
             }
 
             return $SectionObjects;
-        }
-        public function updateTutorial($id, $title, $content, $author) {
-            $stmt = $this->pdo->prepare("UPDATE tutorials SET title = ?, content = ?, author = ? WHERE id = ?");
-            return $stmt->execute([$title, $content, $author, $id]);
         }
     
         public function deleteTutorial($id) {

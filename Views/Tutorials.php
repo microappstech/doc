@@ -20,14 +20,25 @@
                 <div class="mt-8 grid grid-cols-3 gap-4 md:grid-cols-4" id="frameworks-integration">
                 <?php 
                     $tt = new TutorialService($pdo);
-                    $tutorial = $tt->getAllTutorials();
-                    foreach ($tutorial as $tutorial) { ?>
-                        <a href="<?php echo "/Views/Tutorial.php?id=".$tutorial->getId(); ?>" class="grid w-full min-w-1/3 transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25">
+                    $tutorials = $tt->getAllTutorials();
+                    
+                    foreach ($tutorials as $tutorial) { ?>
+                        <?php if($tutorial->Active) { ?>
+                            <a href="<?php echo "/Views/Tutorial.php?id=".$tutorial->getId(); ?>" class="grid w-full min-w-1/3 transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25">
+                                <img src="<?php echo $tutorial->getImage() ?>"/>
+                            </a>
+                            <?php echo $tutorial->Active ?>
+                        <?php } else{ ?>
+                        <span class="grid w-full min-w-1/3 transform cursor-default place-items-center rounded-xl border border-blue bg-gray-500 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25">
+                            <div class="absolute w-full h-full z-100 bg-gray-500 bg-opacity-25">
+                                <span class=" absolute bottom-6 left-[36%]  text-gray-600 size-xl weight-bold">Comming Soon <?php $tutorial->Active ?></span>
+                            </div>
                             <img src="<?php echo $tutorial->getImage() ?>"/>
-                        </a>
-                    <?php
-                    }
-                    ?>
+                        </span>
+                        <?php
+                            }
+                        }
+                        ?>
                 </div>
             </div>
         </div>

@@ -477,10 +477,10 @@
                                 </span>
                               </td>
                               <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><?php echo rand(0,100) ?></td>
-                              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><?php echo "Hamza" ?></td>
+                              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><?php echo $section->Id ?></td>
                               
                               <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="/Views/Admin/EditSection.php?SecId=<?php echo $section->Id ?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                               </td>
                             </tr>
                         <?php } ?>

@@ -5,12 +5,14 @@ class Tutorial {
     private $content;
     private $image;
     private $author;
-    public function __construct($id=null, $title, $content, $image,$author) {
+    public $Active ;
+    public function __construct($id=null, $title, $content, $image,$author, $_Active = false) {
         $this->id = $id;
         $this->title = $title;
         $this->content = $content;
         $this->image = $image;
         $this->author = $author;
+        $this->Active = $_Active;
     }
     public function getId() {
         return $this->id;

@@ -5,9 +5,20 @@
 <?php require_once("../../Services/SectionService.php"); ?> 
 <?php require_once("../../Services/TutorialService.php"); ?> 
 <?php
-  $service = new TutorialService($pdo);
-  $tutorials = $service->getAllTutorials();
-
+  $sectionId = isset($_GET["SecId"]) ? intval($_GET["SecId"]) :0;
+  
+  $DataReady = false;
+  if($sectionId !==null && $sectionId > 0){
+    $sectionService = new SectionService($pdo);
+    $section = $sectionService->getSectionById($sectionId);
+    if($section===null){
+      Header("location:/Views/Admin/Sections.php");
+    }else{
+      $service = new TutorialService($pdo);
+      $tutorials = $service->getAllTutorials();
+      $DataReady = true;
+      }
+  }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
@@ -161,193 +172,6 @@
                 </svg>
               </button>
 
-              <div class="items-center hidden space-x-3 md:flex">
-                <!-- Notification Button -->
-                <div class="relative" x-data="{ isOpen: false }">
-                  <!-- red dot -->
-                  <div class="absolute right-0 p-1 bg-red-400 rounded-full animate-ping"></div>
-                  <div class="absolute right-0 p-1 bg-red-400 border rounded-full"></div>
-                  <button
-                    @click="isOpen = !isOpen"
-                    class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
-                  >
-                    <svg
-                      class="w-6 h-6 text-gray-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                      />
-                    </svg>
-                  </button>
-
-                  <!-- Dropdown card -->
-                  <div
-                    @click.away="isOpen = false"
-                    x-show.transition.opacity="isOpen"
-                    class="absolute w-48 max-w-md mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
-                  >
-                    <div class="p-4 font-medium border-b">
-                      <span class="text-gray-800">Notification</span>
-                    </div>
-                    <ul class="flex flex-col p-2 my-2 space-y-1">
-                      <li>
-                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
-                      </li>
-                    </ul>
-                    <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                      <a href="#">See All</a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Services Button -->
-                <div x-data="{ isOpen: false }">
-                  <button
-                    @click="isOpen = !isOpen"
-                    class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
-                  >
-                    <svg
-                      class="w-6 h-6 text-gray-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                      />
-                    </svg>
-                  </button>
-
-                  <!-- Dropdown -->
-                  <div
-                    @click.away="isOpen = false"
-                    @keydown.escape="isOpen = false"
-                    x-show.transition.opacity="isOpen"
-                    class="absolute mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
-                  >
-                    <div class="p-4 text-lg font-medium border-b">Web apps & services</div>
-                    <ul class="flex flex-col p-2 my-3 space-y-3">
-                      <li>
-                        <a href="#" class="flex items-start px-2 py-1 space-x-2 rounded-md hover:bg-gray-100">
-                          <span class="block mt-1">
-                            <svg
-                              class="w-6 h-6 text-gray-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                              <path
-                                fill="#fff"
-                                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                              />
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                              />
-                            </svg>
-                          </span>
-                          <span class="flex flex-col">
-                            <span class="text-lg">Atlassian</span>
-                            <span class="text-sm text-gray-400">Lorem ipsum dolor sit.</span>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="flex items-start px-2 py-1 space-x-2 rounded-md hover:bg-gray-100">
-                          <span class="block mt-1">
-                            <svg
-                              class="w-6 h-6 text-gray-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                              />
-                            </svg>
-                          </span>
-                          <span class="flex flex-col">
-                            <span class="text-lg">Slack</span>
-                            <span class="text-sm text-gray-400"
-                              >Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span
-                            >
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                    <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                      <a href="#">Show all apps</a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Options Button -->
-                <div class="relative" x-data="{ isOpen: false }">
-                  <button
-                    @click="isOpen = !isOpen"
-                    class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
-                  >
-                    <svg
-                      class="w-6 h-6 text-gray-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                      />
-                    </svg>
-                  </button>
-
-                  <!-- Dropdown card -->
-                  <div
-                    @click.away="isOpen = false"
-                    x-show.transition.opacity="isOpen"
-                    class="absolute w-40 max-w-sm mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
-                  >
-                    <div class="p-4 font-medium border-b">
-                      <span class="text-gray-800">Options</span>
-                    </div>
-                    <ul class="flex flex-col p-2 my-2 space-y-1">
-                      <li>
-                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
-                      </li>
-                    </ul>
-                    <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                      <a href="#">See All</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
               <!-- avatar button -->
               <div class="relative" x-data="{ isOpen: false }">
@@ -358,15 +182,13 @@
                     alt="Ahmed Kamel"
                   />
                 </button>
-                <!-- green dot -->
-                <div class="absolute right-0 p-1 bg-green-400 rounded-full bottom-3 animate-ping"></div>
                 <div class="absolute right-0 p-1 bg-green-400 border border-white rounded-full bottom-3"></div>
 
                 <!-- Dropdown card -->
                 <div
                   @click.away="isOpen = false"
                   x-show.transition.opacity="isOpen"
-                  class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max"
+                  class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max z-10"
                 >
                   <div class="flex flex-col p-4 space-y-1 font-medium border-b">
                     <span class="text-gray-800">Ahmed Kamel</span>
@@ -394,30 +216,19 @@
           <div
             class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row"
           >
-            <h1 class="text-2xl font-semibold whitespace-nowrap text-gray-500">Add Section</h1>
+            <h1 class="text-2xl font-semibold whitespace-nowrap text-gray-500">Edit Section</h1>
           </div>
             <section class="bg-white pb-20 lg:pb-[120px] overflow-hidden relative z-10">
                 <div class="container">
                     <div class="flex flex-wrap lg:justify-between -mx-4">
-                        <div class="w-full lg:w-1/2 xl:w-6/12 px-4 pt-6">
-                            <!-- <div class="lg:mb-0">
-                                <span class="block mb-4 text-base text-primary font-light text-muted">
-                                    Demo
-                                </span>
-                                <div class="border border-1 border-gray-100 w-full min-h-screen rounded shadow-lg ">
-
-                                </div>
-                            </div> -->
-                        </div> 
                         <div class="w-full  px-4 pt-12">
                             <div class="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
                                 <?php 
                                 
                                 if(isset($_POST["submit"])){
                                     $TutorialService = new SectionService($pdo);
-                                    $result = false;
-                                    
-                                    $result = $TutorialService->CreateSection($_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
+                                    $result = false;                                    
+                                    $result = $TutorialService->UpdateSection($sectionId,$_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
                                     
                                     if($result){
                                         echo "<script>window.alert('Craeted Successfuly')</script>";
@@ -434,6 +245,7 @@
                                         type="text"
                                         placeholder="Title"
                                         name="Title"
+                                        value=<?php echo $section->Title ?>
                                         class="
                                         w-full
                                         rounded
@@ -455,7 +267,7 @@
                                               class="w-full rounded py-3 px-[14px] text-body-color text-base border border-[f0f0f0] outline-none focus-visible:shadow-none focus:border-primary">
       
                                               <?php foreach($tutorials as $tuto) {?>
-                                                  <option value="<?php echo $tuto->getId() ?>"><?php echo $tuto->getTitle() ?></option>
+                                                  <option <?php if($tuto->getId()===$section->TutorialId){echo "selected";} ?>  value="<?php echo $tuto->getId() ?>"><?php echo $tuto->getTitle() ?></option>
                                                 <?php } ?>
                                             </select>
                                       </div>
@@ -464,6 +276,7 @@
                                     <input
                                         type="text"
                                         name="Description"
+                                        value=<?php echo $section->Description ?> 
                                         placeholder="Dscription or small resume"
                                         class="
                                         w-full
@@ -483,6 +296,7 @@
                                         rows="6"
                                         id="editor"
                                         name="Content"
+                                        value=<?php echo $section->Content ?>
                                         placeholder="Tutorial's content"
                                         class="
                                         w-full
@@ -1407,16 +1221,63 @@
           isSearchBoxOpen: false,
         }
       }
-      
       tinymce.init({
     selector: '#editor',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-    
-  });
-
-    </script>
+    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+    menubar: 'file edit view insert format tools table help',
+    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+    toolbar_sticky: true,
+    autosave_ask_before_unload: true,
+    autosave_interval: '30s',
+    autosave_prefix: '{path}{query}-{id}-',
+    autosave_restore_when_empty: false,
+    autosave_retention: '2m',
+    image_advtab: true,
+    link_list: [
+      { title: 'My page 1', value: 'https://www.codexworld.com' },
+      { title: 'My page 2', value: 'http://www.codexqa.com' }
+    ],
+    image_list: [
+      { title: 'My page 1', value: 'https://www.codexworld.com' },
+      { title: 'My page 2', value: 'http://www.codexqa.com' }
+    ],
+    image_class_list: [
+      { title: 'None', value: '' },
+      { title: 'Some class', value: 'class-name' }
+    ],
+    importcss_append: true,
+    file_picker_callback: (callback, value, meta) => {
+      /* Provide file and text for the link dialog */
+      if (meta.filetype === 'file') {
+        callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+      }
+  
+      /* Provide image and alt text for the image dialog */
+      if (meta.filetype === 'image') {
+        callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+      }
+  
+      /* Provide alternative source and posted for the media dialog */
+      if (meta.filetype === 'media') {
+        callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+      }
+    },
+    templates: [
+      { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+      { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+      { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+    ],
+    template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+    template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+    height: 400,
+    image_caption: true,
+    quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+    noneditable_class: 'mceNonEditable',
+    toolbar_mode: 'sliding',
+    contextmenu: 'link image table',
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+});
+      </script>
 </div>
 </body>
 </html>

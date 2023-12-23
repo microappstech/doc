@@ -15,7 +15,15 @@
         public function getTutorial($id) {
             $stmt = $this->pdo->prepare("SELECT * FROM tutorials WHERE id = ?");
             $stmt->execute([$id]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            $Tuto = $stmt->fetch(PDO::FETCH_ASSOC);
+            $Tutorial = new Tutorial(
+                $Tuto["id"],
+                $Tuto["title"],
+                $Tuto["content"],
+                $Tuto["image"],
+                $Tuto["author"],
+            );
+            return $Tutorial;
         }
 
         public function getAllTutorials() {
@@ -31,6 +39,7 @@
                     $tutorialData["content"],
                     $tutorialData["image"],
                     $tutorialData["author"],
+                    $tutorialData["active"],
                 );
             }
 
