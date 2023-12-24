@@ -27,7 +27,7 @@
         }
 
         public function getAllTutorials() {
-            $stmt = $this->pdo->query("SELECT * FROM tutorials");
+            $stmt = $this->pdo->query("SELECT * FROM tutorials ORDER BY active DESC");
             $tutorials = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $tutorialObjects = [];
 

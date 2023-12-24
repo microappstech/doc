@@ -1,0 +1,11 @@
+:root{
+    --primaryHard : #884907;
+    --primary : #EC9131;
+    --primaryLow : #f1c07f;
+    --secondary:#79C141;
+    --graph:#98D3DF;
+}
+.activesection {
+    color: white;
+    background: #f1c07f !important;
+}
