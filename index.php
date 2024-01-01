@@ -27,7 +27,7 @@
                             </h2>
                             <p class="text-base text-gray-700">The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn.</p>
                             <div class="mt-10 flex flex-col items-center md:flex-row">
-                                <a href="./Views/Tutorials.php" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-[#EC9131] px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-[#884907] focus:outline-none md:mr-4 md:mb-0 md:w-auto">
+                                <a href="/Tutorial/Views/Tutorials.php" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-[#EC9131] px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-[#884907] focus:outline-none md:mr-4 md:mb-0 md:w-auto">
                                     Get Startd</a>
                                 <a href="/" aria-label="" class="group inline-flex items-center font-semibold text-g1">Watch how
                                     it works
@@ -167,7 +167,7 @@
         </div>
         <!-- end intro -->
         <!-- Cards Techologies -->
-        <div class='flex min-h-screen items-center justify-center min-h-screen px-24'>
+        <div class='flex min-h-screen items-center justify-center px-24'>
             <div class="w-full mb-20  ">
                 <div class="group relative -ml-4 flex scroll-mt-40 items-center pl-4">
                     <a href="#" class="absolute z-50 -ml-10 mb-2.5 rounded-md border border-blue-gray-50 bg-blue-gray-50/50 p-1 opacity-0 hover:opacity-100 group-hover:opacity-100" disabled="false">

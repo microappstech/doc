@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/riva-dashboard-tailwind/riva-dashboard.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Assets/css/customize.css">
+    <link rel="stylesheet" href="/Tutorial/Assets/css/customize.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -54,7 +54,7 @@ if (isset($_GET['id'])) {
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
-                    <img src="/Assets/img/logo.png" alt="" width="180" class="d-inline-block align-text-top">
+                    <img src="/Tutorial/Assets/img/logo.png" alt="" width="180" class="d-inline-block align-text-top">
                 </a>
             </div>
         </nav>
@@ -133,7 +133,9 @@ if (isset($_GET['id'])) {
                     <main class="mt-8 p-6 w-full" id="mainContent">
 
                     </main>
-                    <div class="leftside"></div>
+                    <div class="leftside width-100 ">
+
+                    </div>
                 </div>
 
             <?php } ?>

@@ -35,13 +35,13 @@
   <div>
     <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()" x-init="$refs.loading.classList.add('hidden')">
       
-        <div
+        <!-- <div
           x-ref="loading"
           class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
           style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
         >
           Loading.....
-        </div>
+        </div> -->
 
       
       <div
@@ -327,7 +327,7 @@
                                         hover:bg-opacity-90
                                         "
                                         >
-                                    Create
+                                    Update
                                     </button>
                                 </div>
                             </form>
@@ -1212,7 +1212,7 @@
     <script>
       const setup = () => {
         return {
-          loading: true,
+          loading: false,
           isSidebarOpen: false,
           toggleSidbarMenu() {
             this.isSidebarOpen = !this.isSidebarOpen

@@ -12,9 +12,12 @@
             return $stmp;
         }
         public function UpdateSection($Id,$Title,$Description,$Content,$TutorialId) {
-            $stmp = $this->pdo->prepare("INSERT sections SET Title =?, Description = ?,Content = ?,TutorialId = ? where id = ?);");
-            $stmp->execute([$Title, $Description, $Content, $TutorialId, $Id]);
-            return $this->pdo->lastInsertId();
+            $stmp = $this->pdo->prepare("UPDATE sections SET Title =?, Description = ?,Content = ?,TutorialId = ? where id = ?);");
+            $tt = str_replace("'"," ",$Content);
+             $stmp->execute([$Title, $Description,$tt, $TutorialId, $Id]);
+            
+             return $this->pdo->lastInsertId();
+
         }
         public function getSectionById($id) {
             $stmt = $this->pdo->prepare("SELECT * FROM sections WHERE Id = ?");

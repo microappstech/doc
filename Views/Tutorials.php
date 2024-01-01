@@ -13,18 +13,17 @@
   <link rel="shortcut icon" href="/Assets/img/favIcon.png" type="image/x-icon">
 </head>
 <body class="bg-gray-100">
-    <div class="main">
-        
+    <div class="main"> 
         <div class='flex min-h-screen items-center justify-center px-24'>
             <div class="w-full">
-                <div class="mt-8 grid grid-cols-3 gap-4 md:grid-cols-4" id="frameworks-integration">
+                <div class="mt-8 grid grid-cols-4 gap-4 md:grid-cols-4" id="frameworks-integration">
                 <?php 
                     $tt = new TutorialService($pdo);
                     $tutorials = $tt->getAllTutorials();
                     
                     foreach ($tutorials as $tutorial) { ?>
                         <?php if($tutorial->Active) { ?>
-                            <a href="<?php echo "/Views/Tutorial.php?id=".$tutorial->getId(); ?>" class="grid w-full min-w-1/3 transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25">
+                            <a href="<?php echo "/Tutorial/Views/Tutorial.php?id=".$tutorial->getId(); ?>" class="grid w-full min-w-1/3 transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25">
                                 <img src="<?php echo $tutorial->getImage() ?>"/>
                             </a>
                         <?php } else{ ?>

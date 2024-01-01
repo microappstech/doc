@@ -113,7 +113,7 @@
                 sections.forEach(section => {
                     section.classList.remove("activesection");
                 });
-                console.log(element)
+                
                 element.classList.add("activesection");
                 let func =element.getAttribute("onclick");
                 func = func.replace("this",element);
