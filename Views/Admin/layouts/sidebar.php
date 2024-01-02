@@ -34,7 +34,7 @@
           <ul class="p-2 overflow-hidden">
             <li>
               <a
-                href="<?php echo("/Views/Admin/"); ?>"
+                href="<?php echo("/Tutorial/Views/Admin/"); ?>"
                 class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
                 :class="{'justify-center': !isSidebarOpen}"
               >

@@ -97,9 +97,11 @@
 		</div>
 	</footer>
 
-	<p class="mt-5">This footer component is part of a larger, open-source library of Tailwind CSS components. Learn
-		more
-		by going to the official <a class="text-blue-600 hover:underline"
-			href="#" target="_blank">Flowbite Documentation</a>.
+	<p class="my-5"> Don't Forget to support us even by share and contrubite to <strong class="text-red-500">TUTORIAL</strong>
+	<small>
+		Help do Developer To make more ressource Free
+	</small>
+	<a class="text-blue-600 hover:underline"
+			href="#" target="_blank">Hamza mouddakir</a>.
 	</p>
 </div>

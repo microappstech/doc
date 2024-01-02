@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>Doc | Login</title>
+    <title>Tutorial Hub | Login</title>
 </head>
 <!-- component -->
 <?php require_once ("../../Services/Auth/LoginServices.php");
@@ -34,7 +34,7 @@ require_once ("../../Config/Config.php");
     }
  ?>
 
-<body class="antialiased bg-gradient-to-br from-green-100 to-white">
+<body class="antialiased bg-gradient-to-br from-yellow-100 to-white">
     <div class="container mx-auto px-36">
       <div
         class="flex flex-col text-center md:text-left md:flex-row h-screen justify-evenly md:items-center"
@@ -57,8 +57,8 @@ require_once ("../../Config/Config.php");
             </svg>
           </div>
           <h1 class="text-5xl text-gray-800 font-bold">Turorial</h1>
-          <p class="w-5/12 mx-auto md:mx-0 text-gray-500">
-            Tutorial and maintained by <a href="www.hamza-mouddakir.tech" target="_blank" class="color-purple-100">Hamza </a>
+          <p class="w-6/12 mx-auto md:mx-0 text-gray-500">
+            Tutorial and maintained by <strong><a href="www.hamza-mouddakir.tech" target="_blank" class="text-[#EC9131] underline ">Hamza mouddakir</a></strong>
           </p>
         </div>
         <div class="w-full md:w-full lg:w-9/12 mx-auto md:mx-0">
@@ -76,7 +76,7 @@ require_once ("../../Config/Config.php");
                   id="username"
                   name="username"
                   placeholder="Please insert your username"
-                  class="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
+                  class="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:shadow-lg"
                 />
               </div>
               <div id="input" class="flex flex-col w-full my-5">
@@ -88,14 +88,14 @@ require_once ("../../Config/Config.php");
                   id="password"
                   name="password"
                   placeholder="Please insert your password"
-                  class="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
+                  class="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-100 focus:shadow-lg"
                 />
               </div>
               <div id="button" class="flex flex-col w-full my-5">
                 <button
                   type="submit"
                   name="register"
-                  class="w-full py-4 bg-green-600 rounded-lg text-green-100"
+                  class="w-full py-4 bg-[#EC9131] rounded-lg text-green-100"
                 >
                   <div class="flex flex-row items-center justify-center">
                     <div class="mr-2">

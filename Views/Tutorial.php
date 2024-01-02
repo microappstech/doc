@@ -1,3 +1,14 @@
+<style>
+    pre:has(code){
+        border : 1px solid #79C141;
+        background-color: #79C14147;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    pre code{
+        font-size: 15px !important;
+    }
+</style>
 <?php //include("../Includes/NavBar.php") 
 ?>
 <?php include("../Services/TutorialService.php") ?>

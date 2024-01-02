@@ -128,7 +128,7 @@
             </div>
 
             <!-- Navbar right -->
-            <div class="relative flex items-center space-x-3">
+            <div class="relative flex items-center space-x-3 hidden">
               <!-- Search button -->
               <button
                 @click="isSearchBoxOpen = true"
@@ -344,7 +344,7 @@
                   <img
                     class="object-cover w-8 h-8 rounded-full"
                     src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
-                    alt="Ahmed Kamel"
+                    alt="Hamza Mouddakir"
                   />
                 </button>
                 <!-- green dot -->
@@ -358,7 +358,7 @@
                   class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max"
                 >
                   <div class="flex flex-col p-4 space-y-1 font-medium border-b">
-                    <span class="text-gray-800">Ahmed Kamel</span>
+                    <span class="text-gray-800">Hamza Mouddakir</span>
                     <span class="text-sm text-gray-400">ahmed.kamel@example.com</span>
                   </div>
                   <ul class="flex flex-col p-2 my-2 space-y-1">
@@ -388,26 +388,44 @@
 
           <!-- Start Content -->
           <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-            <template x-for="i in 4" :key="i">
-              <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+            
+          <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
                 <div class="flex items-start justify-between">
                   <div class="flex flex-col space-y-2">
                     <span class="text-gray-400">Total Users</span>
-                    <span class="text-lg font-semibold">100,221</span>
+                    <span class="text-lg font-semibold">100</span>
                   </div>
-                  <div class="p-10 bg-gray-200 rounded-md"></div>
+                  <div class="p-2 bg-gray-200 rounded-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path fill="currentColor" d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7"/></svg>
+                  </div>
+                </div>
+                <div>
+                  <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">14%</span>
+                  <span>from 2019</span>
+                </div>
+
+              </div>
+              <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+                <div class="flex items-start justify-between">
+                  <div class="flex flex-col space-y-2">
+                    <span class="text-gray-400">Total Tutorials</span>
+                    <span class="text-lg font-semibold">1</span>
+                  </div>
+                  <div class="p-2 bg-gray-200 rounded-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path fill="currentColor" d="M21 3H3a2 2 0 0 0-2 2v3h2V5h18v14h-7v2h7a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2M1 18v3h3a3 3 0 0 0-3-3m0-4v2a5 5 0 0 1 5 5h2a7 7 0 0 0-7-7m0-4v2a9 9 0 0 1 9 9h2c0-6.08-4.93-11-11-11m10 1.09v2L14.5 15l3.5-1.91v-2L14.5 13zM14.5 6L9 9l5.5 3L20 9z"/></svg>
+                  </div>
                 </div>
                 <div>
                   <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">14%</span>
                   <span>from 2019</span>
                 </div>
               </div>
-            </template>
+            
           </div>
 
           
-          <h3 class="mt-6 text-xl">Users</h3>
-          <div class="flex flex-col mt-6">
+          <h3 class="mt-6 text-xl ">Statistics</h3>
+          <div class="flex flex-col mt-6 hidden">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
@@ -456,7 +474,7 @@
                                 />
                               </div>
                               <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">Ahmed Kamel</div>
+                                <div class="text-sm font-medium text-gray-900">Hamza Mouddakir</div>
                                 <div class="text-sm text-gray-500">ahmed.kamel@example.com</div>
                               </div>
                             </div>
@@ -492,16 +510,16 @@
             Made by
             <a
               class="text-blue-400 underline"
-              href="https://github.com/Kamona-WD"
+              href="https://github.com/Microappstech"
               target="_blank"
               rel="noopener noreferrer"
-              >Ahmed Kamel</a
+              >Hamza Mouddakir</a
             >
           </div>
           <div>
             <!-- Github svg -->
             <a
-              href="https://github.com/Kamona-WD/starter-dashboard-layout"
+              href="https://github.com/Microappstech/starter-dashboard-layout"
               target="_blank"
               class="flex items-center space-x-1"
             >
