@@ -43,7 +43,7 @@
         }
 
         public function getAllSections() {
-            $stmt = $this->pdo->query("SELECT * FROM Sections");
+            $stmt = $this->pdo->query("SELECT * FROM sections");
             $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $SectionObjects = [];
             foreach ($sections as $sectionData) {
