@@ -6,7 +6,16 @@ error_reporting(E_ALL);
 <?php include_once("../../Config/Config.php") ?> 
 <?php include_once("../../Services/SectionService.php") ?> 
 <?php include_once("../../Models/Section.php") ?>
+<?php
+  $tt = new SectionService($pdo);
+  if(isset($_POST["delete"])){
+    $result = $tt->deleteSection($_POST["sectionToDelete"]);
+    if($result){
+      echo("<script>window.alert(' Successfully Deleted')</script>");
+    }
+  }
 
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -457,7 +466,7 @@ error_reporting(E_ALL);
                     <tbody class="bg-white divide-y divide-gray-200">
                       <!-- <template x-for="i in 10" :key="i"> -->
                       <?php 
-                          $tt = new SectionService($pdo);
+                          
                           $sections = $tt->getAllSections();
                           foreach ($sections as $section) { ?>
                             <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
@@ -485,6 +494,14 @@ error_reporting(E_ALL);
                               
                               <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                 <a href="/Tutorial/Views/Admin/EditSection.php?SecId=<?php echo $section->Id ?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <form  method="post">
+                                  <input name="sectionToDelete" value="<?php echo $section->Id ?>" class="hidden"/>
+                                  <button type="delete" 
+                                        name="delete" class="text-red-600">Delete</button>
+                                      </form>
+                                
+                              </td>
+                              <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                               </td>
                             </tr>
                         <?php } ?>
@@ -573,6 +590,12 @@ error_reporting(E_ALL);
     </div>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
     <script>
+      function Delete(sectionsid){
+        if (confirm("Are you sure you want to delete this record?")) {
+          
+        }
+      }
+            
       const setup = () => {
         return {
           loading: true,

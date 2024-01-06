@@ -1,10 +1,10 @@
 <style>
-    pre:has(code){
+    /* pre:has(code){
         border : 1px solid #79C141;
         background-color: #79C14147;
         border-radius: 10px;
         padding: 10px;
-    }
+    } */
     pre code{
         font-size: 15px !important;
     }
@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
                             <div class="d-flex w-100 align-items-center justify-content-between">
                                 <strong class="mb-1"><?php echo $section->Title ?></strong>
                             </div>
-                            <div class="col-10 mb-1 small">Some placeholder content in a paragraph</div>
+                            <div class="col-10 mb-1 small hidden">Some placeholder content in a paragraph</div>
                         </a>
                         <?php
                         }

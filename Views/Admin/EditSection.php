@@ -245,7 +245,7 @@
                                         type="text"
                                         placeholder="Title"
                                         name="Title"
-                                        value=<?php echo $section->Title ?>
+                                        value="<?php echo $section->Title ?>"
                                         class="
                                         w-full
                                         rounded
@@ -276,7 +276,7 @@
                                     <input
                                         type="text"
                                         name="Description"
-                                        value=<?php echo $section->Description ?> 
+                                        value="<?php echo $section->Description ?>"
                                         placeholder="Dscription or small resume"
                                         class="
                                         w-full
@@ -296,7 +296,7 @@
                                         rows="6"
                                         id="editor"
                                         name="Content"
-                                        value=<?php echo $section->Content ?>
+                                        value="<?php echo $section->Content ?>"
                                         placeholder="Tutorial's content"
                                         class="
                                         w-full

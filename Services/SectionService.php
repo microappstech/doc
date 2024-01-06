@@ -12,7 +12,7 @@
             return $stmp;
         }
         public function UpdateSection($Id,$Title,$Description,$Content,$TutorialId) {
-            $stmp = $this->pdo->prepare("UPDATE sections SET Title =?, Description = ?,Content = ?,TutorialId = ? where id = ?);");
+            $stmp = $this->pdo->prepare("UPDATE sections SET Title =?, Description = ?,Content = ?,TutorialId = ? where id = ?");
             $tt = str_replace("'"," ",$Content);
              $stmp->execute([$Title, $Description,$tt, $TutorialId, $Id]);
             
@@ -78,8 +78,8 @@
             return $SectionObjects;
         }
     
-        public function deleteTutorial($id) {
-            $stmt = $this->pdo->prepare("DELETE FROM tutorials WHERE id = ?");
+        public function deleteSection($id) {
+            $stmt = $this->pdo->prepare("DELETE FROM sections WHERE id = ?");
             return $stmt->execute([$id]);
         }
     }
