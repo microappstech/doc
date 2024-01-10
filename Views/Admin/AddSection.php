@@ -419,10 +419,10 @@
                                     
                                     $result = $TutorialService->CreateSection($_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
                                     
-                                    if($result){
-                                        echo "<script>window.alert('Craeted Successfuly')</script>";
-                                    }else{
-                                      echo "<script>window.alert('Error : Something wrong happen')</script>";
+                                     if($result){
+                                         echo "<script>window.alert('Craeted Successfuly')</script>";
+                                     }else{
+                                       echo "<script>window.alert('Error : Something wrong happen')</script>";
                                     }
                                   }
                                   
