@@ -5,11 +5,22 @@
 <?php require_once("../../Services/SectionService.php"); ?> 
 <?php require_once("../../Services/TutorialService.php"); ?> 
 <?php
-  $service = new TutorialService($pdo);
-  $tutorials = $service->getAllTutorials();
-
+  $sectionId = isset($_GET["SecId"]) ? intval($_GET["SecId"]) :0;
+  
+  $DataReady = false;
+  if($sectionId !==null && $sectionId > 0){
+    $sectionService = new SectionService($pdo);
+    $section = $sectionService->getSectionById($sectionId);
+    if($section===null){
+      Header("location:/Views/Admin/Sections.php");
+    }else{
+      $service = new TutorialService($pdo);
+      $tutorials = $service->getAllTutorials();
+      $DataReady = true;
+      }
+  }
 ?>
-<!DOCTYPE HTML>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,14 +28,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
     <title>Tutorial | Dashbord</title>
-    <link rel="stylesheet" href="/Tutorial/Assets/css/prism_csharp.css">
-    
     <script src="https://cdn.tiny.cloud/1/1nsjvij0ax0do9hxr8dls5xcprj83fplbppgs433utmmndp7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
-<body>   
-    <!-- component -->
+<body>
+
+   
 <div>
-<?php include("./layouts/sidebar.php"); ?>
+   <?php  include("../../Includes/NavBar.php") ?>
     <div class="flex overflow-hidden bg-white pt-16">
        <?php  include("../../Includes/SideBar.php") ?>
        <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
@@ -34,38 +44,24 @@
           <div
             class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row"
           >
-            <h1 class="text-2xl font-semibold whitespace-nowrap text-gray-500">Add Section</h1>
+            <h1 class="text-2xl font-semibold whitespace-nowrap text-gray-500">Edit Section</h1>
           </div>
             <section class="bg-white pb-20 lg:pb-[120px] overflow-hidden relative z-10">
                 <div class="container">
                     <div class="flex flex-wrap lg:justify-between -mx-4">
-                        <div class="w-full lg:w-1/2 xl:w-6/12 px-4 pt-6">
-                            <!-- <div class="lg:mb-0">
-                                <span class="block mb-4 text-base text-primary font-light text-muted">
-                                    Demo
-                                </span>
-                                <div class="border border-1 border-gray-100 w-full min-h-screen rounded shadow-lg ">
-
-                                </div>
-                            </div> -->
-                        </div> 
                         <div class="w-full  px-4 pt-12">
                             <div class="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
-                                <?php 
+                                 <?php 
                                 
                                 if(isset($_POST["submit"])){
                                     $TutorialService = new SectionService($pdo);
-                                    $result = false;
+                                    $result = false;                                    
+                                    $result = $TutorialService->UpdateSection($sectionId,$_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
                                     
-                                    //$result = $TutorialService->CreateSection($_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
-                                    echo htmlspecialchars($_POST["Content"]);
-                                    echo "<br/>";
-                                    echo $_POST["Content"];
-                                    $result = true;
-                                     if($result){
-                                         echo "<script>window.alert('Craeted Successfuly')</script>";
-                                     }else{
-                                       echo "<script>window.alert('Error : Something wrong happen')</script>";
+                                    if($result){
+                                        echo "<script>window.alert('Craeted Successfuly')</script>";
+                                    }else{
+                                      echo "<script>window.alert('Error : Something wrong happen')</script>";
                                     }
                                   }
                                   
@@ -77,6 +73,7 @@
                                         type="text"
                                         placeholder="Title"
                                         name="Title"
+                                        value="<?php echo $section->Title ?>"
                                         class="
                                         w-full
                                         rounded
@@ -98,7 +95,7 @@
                                               class="w-full rounded py-3 px-[14px] text-body-color text-base border border-[f0f0f0] outline-none focus-visible:shadow-none focus:border-primary">
       
                                               <?php foreach($tutorials as $tuto) {?>
-                                                  <option value="<?php echo $tuto->getId() ?>"><?php echo $tuto->getTitle() ?></option>
+                                                  <option <?php if($tuto->getId()===$section->TutorialId){echo "selected";} ?>  value="<?php echo $tuto->getId() ?>"><?php echo $tuto->getTitle() ?></option>
                                                 <?php } ?>
                                             </select>
                                       </div>
@@ -107,6 +104,7 @@
                                     <input
                                         type="text"
                                         name="Description"
+                                        value="<?php echo $section->Description ?>"
                                         placeholder="Dscription or small resume"
                                         class="
                                         w-full
@@ -126,6 +124,7 @@
                                         rows="6"
                                         id="editor"
                                         name="Content"
+                                        value="<?php echo $section->Content ?>"
                                         placeholder="Tutorial's content"
                                         class="
                                         w-full
@@ -143,8 +142,6 @@
                                 </div>
                                 <div>
                                     <button
-                                    onclick="tinyMCE.triggerSave(true,true);"
-
                                         type="submit"
                                         name="submit"
                                         class="
@@ -158,7 +155,7 @@
                                         hover:bg-opacity-90
                                         "
                                         >
-                                    Create
+                                    Update
                                     </button>
                                 </div>
                             </form>
@@ -978,104 +975,70 @@
         </main>
        </div>
     </div>
-    
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
  </div>
 
 
     <script>
+      
       tinymce.init({
-  selector: '#editor',
-  plugins: 'codesample',
-  codesample_languages: [
-    { text: 'HTML/XML', value: 'markup' },
-    { text: 'JavaScript', value: 'javascript' },
-    { text: 'CSS', value: 'css' },
-    { text: 'PHP', value: 'php' },
-    { text: 'Ruby', value: 'ruby' },
-    { text: 'Python', value: 'python' },
-    { text: 'Java', value: 'java' },
-    { text: 'C', value: 'c' },
-    { text: 'C#', value: 'csharp' },
-    { text: 'C++', value: 'cpp' }
-  ],
-  toolbar: 'codesample',
-  setup: function (editor) {
-        // Attach event listener for initialization completion
-        editor.on('init', function () {
-            // Once initialized, attach the change event listener
-            editor.on('Change', function (e) {
-                var content = editor.getContent();
-                console.log(content);
-            });
-        });
-    }
+    selector: '#editor',
+    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+    menubar: 'file edit view insert format tools table help',
+    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+    toolbar_sticky: true,
+    autosave_ask_before_unload: true,
+    autosave_interval: '30s',
+    autosave_prefix: '{path}{query}-{id}-',
+    autosave_restore_when_empty: false,
+    autosave_retention: '2m',
+    image_advtab: true,
+    link_list: [
+      { title: 'My page 1', value: 'https://www.codexworld.com' },
+      { title: 'My page 2', value: 'http://www.codexqa.com' }
+    ],
+    image_list: [
+      { title: 'My page 1', value: 'https://www.codexworld.com' },
+      { title: 'My page 2', value: 'http://www.codexqa.com' }
+    ],
+    image_class_list: [
+      { title: 'None', value: '' },
+      { title: 'Some class', value: 'class-name' }
+    ],
+    importcss_append: true,
+    file_picker_callback: (callback, value, meta) => {
+      /* Provide file and text for the link dialog */
+      if (meta.filetype === 'file') {
+        callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+      }
+  
+      /* Provide image and alt text for the image dialog */
+      if (meta.filetype === 'image') {
+        callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+      }
+  
+      /* Provide alternative source and posted for the media dialog */
+      if (meta.filetype === 'media') {
+        callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+      }
+    },
+    templates: [
+      { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+      { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+      { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+    ],
+    template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+    template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+    height: 400,
+    image_caption: true,
+    quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+    noneditable_class: 'mceNonEditable',
+    toolbar_mode: 'sliding',
+    contextmenu: 'link image table',
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 });
-// Assuming 'editor' is the ID of your TinyMCE instance
-
-//       tinymce.init({
-//     selector: '#editor',
-//     plugins: 'preview codesample autosave save directionality code visualblocks visualchars fullscreen image link media template  table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-//     menubar: 'file edit view insert format tools table help',
-    
-//   selector: 'textarea',
-//   plugins: 'codesample',
-//   toolbar: 'codesample',
-//   codesample_global_prismjs: false,
-//     toolbar_sticky: true,
-//     autosave_ask_before_unload: true,
-//     autosave_interval: '30s',
-//     autosave_prefix: '{path}{query}-{id}-',
-//     autosave_restore_when_empty: false,
-//     autosave_retention: '2m',
-//     image_advtab: true,
-//     link_list: [
-//       { title: 'My page 1', value: 'https://www.codexworld.com' },
-//       { title: 'My page 2', value: 'http://www.codexqa.com' }
-//     ],
-//     image_list: [
-//       { title: 'My page 1', value: 'https://www.codexworld.com' },
-//       { title: 'My page 2', value: 'http://www.codexqa.com' }
-//     ],
-//     image_class_list: [
-//       { title: 'None', value: '' },
-//       { title: 'Some class', value: 'class-name' }
-//     ],
-//     importcss_append: true,
-//     file_picker_callback: (callback, value, meta) => {
-//       /* Provide file and text for the link dialog */
-//       if (meta.filetype === 'file') {
-//         callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
-//       }
-  
-//       /* Provide image and alt text for the image dialog */
-//       if (meta.filetype === 'image') {
-//         callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
-//       }
-  
-//       /* Provide alternative source and posted for the media dialog */
-//       if (meta.filetype === 'media') {
-//         callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
-//       }
-//     },
-//     templates: [
-//       { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
-//       { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
-//       { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
-//     ],
-//     template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
-//     template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
-//     height: 400,
-//     image_caption: true,
-//     quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-//     noneditable_class: 'mceNonEditable',
-//     toolbar_mode: 'sliding',
-//     contextmenu: 'link image table',
-//     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-// });
 
     </script>
-    <script src="/Tutorial/Assets/js/prism_csharp.js" data-manual></script>
-    window.Prism = window.Prism || {};
-window.Prism.manual = true;
     </body>
 </html>

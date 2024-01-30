@@ -20,7 +20,7 @@
       }
   }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,186 +31,12 @@
     <script src="https://cdn.tiny.cloud/1/1nsjvij0ax0do9hxr8dls5xcprj83fplbppgs433utmmndp7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
-  <!-- component -->
-  <div>
-    <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()" x-init="$refs.loading.classList.add('hidden')">
-      
-        <!-- <div
-          x-ref="loading"
-          class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
-          style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-        >
-          Loading.....
-        </div> -->
-
-      
-      <div
-        x-show.in.out.opacity="isSidebarOpen"
-        class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
-        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-      ></div>
-
-      <!-- Sidebar -->
-      <?php include("./layouts/sidebar.php"); ?>
-
-      <div class="flex flex-col flex-1 h-full overflow-hidden">
-        <!-- Navbar -->
-        <header class="flex-shrink-0 border-b">
-          <div class="flex items-center justify-between p-2">
-            
-          <div class="flex items-center space-x-3">
-              <span class="p-2 text-xl font-semibold tracking-wider uppercase lg:hidden">K-WD</span>
-              <!-- Toggle sidebar button -->
-              <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none focus:ring">
-                <svg
-                  class="w-4 h-4 text-gray-600"
-                  :class="{'transform transition-transform -rotate-180': isSidebarOpen}"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-            
-            <div
-              x-show.transition="isSearchBoxOpen"
-              class="fixed inset-0 z-10 bg-black bg-opacity-20"
-              style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-            >
-              <div
-                @click.away="isSearchBoxOpen = false"
-                class="absolute inset-x-0 flex items-center justify-between p-2 bg-white shadow-md"
-              >
-                <div class="flex items-center flex-1 px-2 space-x-2">
-                  <!-- search icon -->
-                  <span>
-                    <svg
-                      class="w-6 h-6 text-gray-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    class="w-full px-4 py-3 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none"
-                  />
-                </div>
-                <!-- close button -->
-                <button @click="isSearchBoxOpen = false" class="flex-shrink-0 p-4 rounded-md">
-                  <svg
-                    class="w-4 h-4 text-gray-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <!-- Desktop search box -->
-            <div class="items-center hidden px-2 space-x-2 md:flex-1 md:flex md:mr-auto md:ml-5">
-              <!-- search icon -->
-              <span>
-                <svg
-                  class="w-5 h-5 text-gray-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </span>
-              <input
-                type="text"
-                placeholder="Search"
-                class="px-4 py-3 rounded-md hover:bg-gray-100 lg:max-w-sm md:py-2 md:flex-1 focus:outline-none md:focus:bg-gray-100 md:focus:shadow md:focus:border"
-              />
-            </div>
-
-            <!-- Navbar right -->
-            <div class="relative flex items-center space-x-3">
-              <!-- Search button -->
-              <button
-                @click="isSearchBoxOpen = true"
-                class="p-2 bg-gray-100 rounded-full md:hidden focus:outline-none focus:ring hover:bg-gray-200"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </button>
-
-
-              <!-- avatar button -->
-              <div class="relative" x-data="{ isOpen: false }">
-                <button @click="isOpen = !isOpen" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
-                  <img
-                    class="object-cover w-8 h-8 rounded-full"
-                    src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
-                    alt="Hamza Mouddakir"
-                  />
-                </button>
-                <div class="absolute right-0 p-1 bg-green-400 border border-white rounded-full bottom-3"></div>
-
-                <!-- Dropdown card -->
-                <div
-                  @click.away="isOpen = false"
-                  x-show.transition.opacity="isOpen"
-                  class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max z-10"
-                >
-                  <div class="flex flex-col p-4 space-y-1 font-medium border-b">
-                    <span class="text-gray-800">Hamza Mouddakir</span>
-                    <span class="text-sm text-gray-400">ahmed.kamel@example.com</span>
-                  </div>
-                  <ul class="flex flex-col p-2 my-2 space-y-1">
-                    <li>
-                      <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
-                    </li>
-                    <li>
-                      <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
-                    </li>
-                  </ul>
-                  <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                    <a href="#">Logout</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-        <!-- Main content -->
+<div>
+<?php include("./layouts/sidebar.php"); ?>
+    <div class="flex overflow-hidden bg-white pt-16">
+       <?php  include("../../Includes/SideBar.php") ?>
+       <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
+       <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
         <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
           <!-- Main content header -->
           <div
@@ -297,19 +123,8 @@
                                         id="editor"
                                         name="Content"
                                         value="<?php echo $section->Content ?>"
-                                        placeholder="Tutorial's content"
-                                        class="
-                                        w-full
-                                        rounded
-                                        py-3
-                                        px-[14px]
-                                        text-body-color text-base
-                                        border border-[f0f0f0]
-                                        resize-none
-                                        outline-none
-                                        focus-visible:shadow-none
-                                        focus:border-primary
-                                        "
+                                        placeholder="Tutorial content"
+                                        class=" w-full rounded py-3 px-[14px] text-body-color text-base border border-[f0f0f0] resize-none outline-none focus-visible:shadow-none focus:border-primary"
                                         ></textarea>
                                 </div>
                                 <div>
@@ -1145,69 +960,9 @@
                 </div>
             </section>
         </main>
-        <!-- Main footer -->
-        <footer class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
-          <div>T-utorials &copy; 2020</div>
-          <div class="text-sm">
-            Made by
-            <a
-              class="text-blue-400 underline"
-              href="https://hamza-mouddakir.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Hamza mouddakir</a
-            >
-          </div>
-          <div>
-            <!-- Github svg -->
-            <a
-              href="https://github.com/microappstech"
-              target="_blank"
-              class="flex items-center space-x-1"
-            >
-              <svg class="w-6 h-6 text-gray-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path
-                  fill-rule="evenodd"
-                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-                ></path>
-              </svg>
-              <span class="hidden text-sm md:block">View on Github</span>
-            </a>
-          </div>
-        </footer>
-      </div>
-      <div
-        x-show="isSettingsPanelOpen"
-        @click.away="isSettingsPanelOpen = false"
-        x-transition:enter="transition transform duration-300"
-        x-transition:enter-start="translate-x-full opacity-30  ease-in"
-        x-transition:enter-end="translate-x-0 opacity-100 ease-out"
-        x-transition:leave="transition transform duration-300"
-        x-transition:leave-start="translate-x-0 opacity-100 ease-out"
-        x-transition:leave-end="translate-x-full opacity-0 ease-in"
-        class="fixed inset-y-0 right-0 flex flex-col bg-white shadow-lg bg-opacity-20 w-80"
-        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-      >
-        <div class="flex items-center justify-between flex-shrink-0 p-2">
-          <h6 class="p-2 text-lg">Settings</h6>
-          <button @click="isSettingsPanelOpen = false" class="p-2 rounded-md focus:outline-none focus:ring">
-            <svg
-              class="w-6 h-6 text-gray-600"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <div class="flex-1 max-h-full p-4 overflow-hidden hover:overflow-y-scroll">
-          <span>Settings Content</span>
-          <!-- Settings Panel Content ... -->
-        </div>
-      </div>
+       </div>
     </div>
+ </div>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
     <script>
       const setup = () => {
@@ -1277,7 +1032,6 @@
     contextmenu: 'link image table',
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 });
-      </script>
-</div>
+    </script>
 </body>
 </html>
