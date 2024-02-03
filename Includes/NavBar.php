@@ -16,7 +16,7 @@
                   </a>
              </div>
              
-             <a class="px-6 py-2 bg-orange-500 text-white rounded" href="/soumwej/pages/admin/logout.php">Disconnect</a>
+             <a class="px-6 py-2 bg-orange-500 text-white rounded" href="/Tutorial/Views/logout.php">Disconnect</a>
              
           </div>
        </div>

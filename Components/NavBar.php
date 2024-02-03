@@ -10,12 +10,12 @@
                       <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                    </svg>
                 </button>
-                  <a href="/soumwej" class="text-xl font-bold flex items-center lg:ml-2.5">
+                  <a href="/Tutorial/" class="text-xl font-bold flex items-center lg:ml-2.5">
                      <img src="/Tutorial/Assets/img/logo.png" alt="" width="180" class="d-inline-block align-text-top">
                   </a>
              </div>
              
-             <a href="/soumwej/pages/admin/logout.php" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Disconnect</a>
+             <a href="/Tutorial/Views/logout.php" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Disconnect</a>
              <div class="flex items-center invisible hidden">
                 <button id="toggleSidebarMobileSearch" type="button" class="lg:hidden text-gray-500 hover:text-gray-900 hover:bg-gray-100 p-2 rounded-lg">
                    <span class="sr-only">Search</span>
