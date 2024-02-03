@@ -12,6 +12,10 @@
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
     <title>Tutorial | Dashbord</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+
+    
+    
 
 </head>
 <body>
@@ -149,10 +153,9 @@
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
-    <script>window.Prism = window.Prism || {};
-window.Prism.manual = true;</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" integrity="sha512-UOoJElONeUNzQbbKQbjldDf9MwOHqxNz49NNJJ1d90yp+X9edsHyJoAs6O4K19CZGaIdjI5ohK+O2y5lBTW6uQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  </div>
 
-
+ 
 </body>
 </html>

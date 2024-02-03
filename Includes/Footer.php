@@ -3,7 +3,7 @@
 <div class="mx-auto w-[94%]">
 <hr class="border-gray-200 sm:mx-auto dark:border-gray-700 ">
 
-	<footer class="p-4 bg-white sm:p-6 light:bg-gray-800">
+	<!-- <footer class="p-4 bg-white sm:p-6 light:bg-gray-800">
 		<div class="md:flex md:justify-between">
 			<div class="mb-6 md:mb-0">
 				<a href="#" target="_blank" class="flex items-center">
@@ -95,7 +95,7 @@
 				</a>
 			</div>
 		</div>
-	</footer>
+	</footer> -->
 
 	<p class="my-5"> Don't Forget to support us even by share and contrubite to <strong class="text-red-500">TUTORIAL</strong>
 	<small>

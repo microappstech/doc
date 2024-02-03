@@ -17,11 +17,17 @@
         <div class='flex min-h-screen items-center justify-center md-px-24'>
             <div class="w-full px-16">
                 <div class=" mt-20">
-                    <div class="bg-orange-500 py-16 sm:py-24 lg:py-32">
+                    <div class="">
                     <div class="mx-auto lg:px-8">
-                        <div class="text-3xl font-bold tracking-tight text-white ">
-                            <h2 class="inline sm:block lg:inline xl:block text-center">Tutorials</h2>
+                    <section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+                        <div class="px-4 mx-auto max-w-screen-xl text-center py-20 ">
+                            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">We invest in the world’s learning</h1>
+                            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-68">Thank you for byuing a donate for us.</p>
                         </div>
+                    </section>
+                        <!-- <div class="text-3xl font-bold tracking-tight text-white ">
+                            <h2 class="inline sm:block lg:inline xl:block text-center">Tutorials</h2>
+                        </div> -->
                     <!-- 
                         <div class="max-w-xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:col-span-7">
                             <h2 class="inline sm:block lg:inline xl:block">Want product news and updates?</h2>
@@ -63,4 +69,5 @@
             </div>
         </div>
     </div>
+    <?php include_once("../Includes/Footer2.php") ?>
 </body>
