@@ -7,9 +7,9 @@
         }
 
         // Crud operations 
-        public function CreateTutorial($Title,$Content,$Image,$Author) {
-            $stmp = $this->pdo->prepare("insert into tutorials(title,content,image,author) values(?,?,?,?)");
-            $stmp->execute([$Title, $Content, $Image, $Author]);
+        public function CreateTutorial($Title,$Content,$Image,$Author,$writerid) {
+            $stmp = $this->pdo->prepare("insert into tutorials(title,content,image,author,writerid) values(?,?,?,?,?)");
+            $stmp->execute([$Title, $Content, $Image, $Author,$writerid]);
             return $this->pdo->lastInsertId();
         }
         public function getTutorial($id) {
@@ -45,6 +45,26 @@
 
             return $tutorialObjects;
         }
+
+        public function getTutorialsForUser($userid) {
+            $stmt = $this->pdo->prepare("SELECT * FROM tutorials WHERE writerid = ?");
+            $stmt->execute([$userid]);
+            $tutorials = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tutorialObjects = [];
+
+            foreach ($tutorials as $tutorialData) {
+                $tutorialObjects[] = new Tutorial(
+                    $tutorialData["id"],
+                    $tutorialData["title"],
+                    $tutorialData["content"],
+                    $tutorialData["image"],
+                    $tutorialData["author"],
+                    $tutorialData["active"],
+                );
+            }
+            return $tutorialObjects;
+        }
+
         public function updateTutorial($id, $title, $content, $author) {
             $stmt = $this->pdo->prepare("UPDATE tutorials SET title = ?, content = ?, author = ? WHERE id = ?");
             return $stmt->execute([$title, $content, $author, $id]);

@@ -6,7 +6,8 @@
     $secServ = new SecurityService($pdo);
     if(isset($_POST["register"])){
         var_dump($_POST);
-        $resultReg = $secServ->Rgister($_POST["email"],$_POST["password"],$_POST["name"]);
+        // $resultReg = $secServ->Rgister($_POST["email"],$_POST["password"],$_POST["name"]);
+        Header("Location:/Tutorial/Views/Auth/Login.php");
     }
  ?>
 <!DOCTYPE html>

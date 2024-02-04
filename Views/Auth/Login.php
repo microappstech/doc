@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,8 +18,10 @@ require_once ("../../Config/Config.php");
         try{
 
             $result = $LoginService->login($_POST["username"],$_POST["password"]);
-            if($result) {
+            if($result!=false) {
                 header("Location:"."/Tutorial/Views/Admin/index.php");
+                $_SESSION["logged"]=true;
+                $_SESSION["userid"]=$result["id"];
             }
             else {
               $TitleAlert ="Error";

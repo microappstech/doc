@@ -57,11 +57,8 @@
                                     $TutorialService = new SectionService($pdo);
                                     $result = false;
                                     
-                                    //$result = $TutorialService->CreateSection($_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
-                                    echo htmlspecialchars($_POST["Content"]);
-                                    echo "<br/>";
-                                    echo $_POST["Content"];
-                                    $result = true;
+                                    $result = $TutorialService->CreateSection($_POST["Title"],$_POST["Description"],$_POST["Content"],$_POST["TutorialId"]);                                    
+                                    
                                      if($result){
                                          echo "<script>window.alert('Craeted Successfuly')</script>";
                                      }else{

@@ -1,7 +1,9 @@
+<?php session_start() ?> 
 <?php include_once("../../Constants.php"); ?> 
 <?php include_once("../../Models/Tutorail.php"); ?> 
 <?php require_once("../../Config/Config.php"); ?> 
 <?php require_once("../../Services/TutorialService.php"); ?>
+<?php require_once("../../Functions/IsLLogged.php"); ?> 
 
 
 <html lang="en">
@@ -53,7 +55,7 @@
                                     $TutorialService = new TutorialService($pdo);
                                     $result = false;
                                     
-                                    $result = $TutorialService->CreateTutorial($_POST["Title"],$_POST["content"],$_POST["image"],"Hamza");                                    
+                                    $result = $TutorialService->CreateTutorial($_POST["Title"],$_POST["content"],$_POST["image"],"User".$_SESSION["userid"], $_SESSION["userid"]);                                    
                                     if($result){
                                         echo "<script>window.alert('Craeted Successfuly')</script>";
                                     }
@@ -82,7 +84,7 @@
                                     <input
                                         type="text"
                                         name="image"
-                                        placeholder="Icon"
+                                        placeholder="Thank you to write a svg code"
                                         class="
                                         w-full
                                         rounded
@@ -957,7 +959,7 @@
        </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    <script src="https://demo.Tutorial.com/windster/app.bundle.js"></script>
  </div>
 
 

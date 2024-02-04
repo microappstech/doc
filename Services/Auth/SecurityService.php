@@ -14,7 +14,7 @@ class SecurityService {
             if($user != null && password_verify($password, $user["password"])) {
                 return $user;
             }else{
-                return $user;
+                return false;
             }
         }catch(Exception $e){
             throw new Exception($e);
@@ -40,5 +40,13 @@ class SecurityService {
             $stmpI->execute([$username, $hashPassword,$name]);
             return true;
         }
+    }
+
+    public function GetUserRole($userid){
+        $query ="SELECT Rolename  from roles inner join userroles on roles.roleid = userroles.roleid inner join users on userroles.userid = users.id where users.id = ?";
+        $stmp = $this->pdo->prepare($query);
+        $stmp->execute([$userid]);
+        $result = $stmp->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

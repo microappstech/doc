@@ -1,7 +1,11 @@
+<?php session_start() ?>
 <?php include_once("../../Constants.php") ?> 
 <?php include_once("../../Config/Config.php") ?> 
 <?php include_once("../../Services/TutorialService.php") ?> 
 <?php include_once("../../Models/Tutorail.php") ?>
+<?php
+  include_once("../../Functions/IsLLogged.php") 
+ ?>
 
 
 <html lang="en">
@@ -41,13 +45,6 @@
                 </span>
                 <span class="text-white">Add Tutorial</span>
               </a>
-              <!-- <a
-                href="https://kamona-wd.github.io/kwd-dashboard/"
-                target="_blank"
-                class="inline-flex items-center justify-center px-4 py-1 space-x-1 bg-red-500 text-white rounded-md shadow animate-bounce hover:bg-red-600"
-              >
-                <span>See Dark & Light version</span>
-              </a> -->
               </div>
             </div>
             <div class="flex flex-col mt-6">
@@ -63,12 +60,6 @@
                           >
                             Title
                           </th>
-                          <!-- <th
-                            scope="col"
-                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                          >
-                            Description
-                          </th> -->
                           <th
                             scope="col"
                             class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
@@ -97,7 +88,7 @@
                         <!-- <template x-for="i in 10" :key="i"> -->
                         <?php 
                             $tt = new TutorialService($pdo);
-                            $tutorials = $tt->getAllTutorials();
+                            $tutorials = $tt->getTutorialsForUser(3);
                             foreach ($tutorials as $tutorial) { ?>
                               <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -152,7 +143,7 @@
        </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    <script src="https://demo.Tutorial.com/windster/app.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" integrity="sha512-UOoJElONeUNzQbbKQbjldDf9MwOHqxNz49NNJJ1d90yp+X9edsHyJoAs6O4K19CZGaIdjI5ohK+O2y5lBTW6uQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  </div>
 

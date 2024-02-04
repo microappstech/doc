@@ -16,8 +16,14 @@
                   </a>
              </div>
              
-             <a class="px-6 py-2 bg-orange-500 text-white rounded" href="/Tutorial/Views/logout.php">Disconnect</a>
-             
+             <?php if(isset($_SESSION["logged"])){  ?>
+               <a class="px-6 py-2 bg-orange-500 text-white rounded" href="/Tutorial/Views/logout.php">Disconnect</a>
+               <?php }else{?>
+                  <div class="flex">
+                     <a class="px-6 py-2 text-orange-500 " href="/Tutorial/Views/Auth/login.php">Login</a>
+                     <a class="px-6 py-2 text-orange-500 " href="/Tutorial/Views/Register.php">Sing Up</a>
+                  </div>
+             <?php } ?>
           </div>
        </div>
     </nav>

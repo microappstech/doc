@@ -1,14 +1,22 @@
-
+<?php session_start() ?>
+<?php include_once("../../Config/Config.php") ?>
 <?php include_once("../../Constants.php") ?> 
-<?php
-   session_start();   
-//    if (isset($_SESSION['logged'])) {
-      
-//   } else {
-//       header("Location: /soumwej/"); 
-//   }
+<?php include_once('../../Services/Auth/SecurityService.php') ?>
+<?php include_once("../../Functions/IsLLogged.php") ?>
+<?php  
+   $secSer = new SecurityService($pdo);
+   $userRoles = $secSer->GetUserRole($_SESSION["userid"]);
    
-?>
+   $roles = array_column($userRoles, 'Rolename');
+   $authorized = in_array('Admin', $roles);
+   if(!$authorized){
+      echo "<script>window.alert('Your are not authorized')</script>";
+      Header("Location:/Tutorial/index.php");
+   }else{
+
+   }
+   
+   ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -310,7 +318,7 @@
        </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    <script src="https://demo.Tutorial.com/windster/app.bundle.js"></script>
  </div>
 
 

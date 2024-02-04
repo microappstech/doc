@@ -1,13 +1,17 @@
-<?php ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php 
+session_start();
 ?>
 <?php include_once("../../Constants.php") ?> 
 <?php include_once("../../Config/Config.php") ?> 
 <?php include_once("../../Services/SectionService.php") ?> 
 <?php include_once("../../Models/Section.php") ?>
+<?php include_once("../../Models/Tutorail.php") ?>
+<?php include_once('../../Services/TutorialService.php') ?>
+<?php include_once('../../Functions/IsLLogged.php') ?>
 <?php
   $tt = new SectionService($pdo);
+  $tutoServ = new TutorialService($pdo);
+  $Tutorials = $tutoServ->getTutorialsForUser($_SESSION["userid"]);
   if(isset($_POST["delete"])){
     $result = $tt->deleteSection($_POST["sectionToDelete"]);
     if($result){
@@ -24,7 +28,7 @@ error_reporting(E_ALL);
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
     <title>Tutorial | Dashbord</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
 </head>
 <body>
 
@@ -41,7 +45,18 @@ error_reporting(E_ALL);
             class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row"
           >
             <h1 class="text-2xl font-semibold whitespace-nowrap">Sections</h1>
-            <div class="space-y-6 md:space-x-2 md:space-y-0">
+            <div class="form-control px-5 w-full">
+              <div class="max-w-2xl mx-auto ">
+                  <select id="countries" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                    <option selected>Choose a country</option>
+                    <?php foreach($Tutorials as $tuto) { ?>    
+                      <option ><?php echo $tuto->getTitle() ?></option>
+                    <?php } ?>
+                  </select>
+                
+              </div>
+            </div>
+            <div class="px-5 md:w-60">
               <a
               href="<?php echo "/Tutorial/Views/Admin/AddSection.php" ?>"
               class="inline-flex items-center justify-center px-4 py-2 space-x-1 bg-blue-800 rounded-md shadow hover:bg-opacity-20"
@@ -49,7 +64,7 @@ error_reporting(E_ALL);
               <span>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><g fill="none" stroke="#aeb4be" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"><circle cx="128" cy="128" r="112"/><path d="M 79.999992,128 H 176.0001"/><path d="m 128.00004,79.99995 v 96.0001"/></g></svg>
               </span>
-              <span class="text-white">Add Section</span>
+              <span class="text-white hidden sm:block ">Add Section</span>
             </a>
             </div>
           </div>
@@ -100,7 +115,8 @@ error_reporting(E_ALL);
                       <!-- <template x-for="i in 10" :key="i"> -->
                       <?php 
                           
-                          $sections = $tt->getAllSections();
+                          // $sections = $tt->getAllSections();
+                          $sections = [];
                           foreach ($sections as $section) { ?>
                             <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                               <td class="px-6 py-4 whitespace-nowrap">
@@ -156,9 +172,27 @@ error_reporting(E_ALL);
        </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    <script src="https://demo.Tutorial.com/windster/app.bundle.js"></script>
  </div>
 
-
+<script>
+document.getElementById('countries').addEventListener('change', function() {
+    var selectedTutorialId = this.value; // Get the selected tutorial ID
+    // Send an AJAX request to your PHP script
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Handle the response from the PHP script
+                console.log(xhr.responseText);
+            } else {
+                console.error('Request failed: ' + xhr.status);
+            }
+        }
+    };
+    xhr.open('GET', '/Tutorial/Functions/LoadSectionOfTuto.php?TutoId=' + selectedTutorialId, true);
+    xhr.send();
+});
+</script>
 </body>
 </html>
