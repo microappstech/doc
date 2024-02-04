@@ -1,6 +1,6 @@
 <?php
 
-class LoginService {
+class SecurityService {
     private $pdo ;
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
@@ -25,19 +25,19 @@ class LoginService {
     }
     public function checkLogin($username, $password) {
     }
-    public function Rgister($username, $password) {
+    public function Rgister($username, $password,$name) {
         $stmp = $this->pdo->prepare("select * from users where username = ?");
         $stmp->execute(array($username));
         
         if($stmp->fetch(PDO::FETCH_ASSOC)!=null) {
             $message = "username already taken";
-            return false;
+            return $message;
         }
         else{
             $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-            $stmpI = $this->pdo->prepare("insert into users(username,password) values(?,?);");
+            $stmpI = $this->pdo->prepare("insert into users(username,password,fullname  ) values(?,?,?);");
         
-            $stmpI->execute([$username, $hashPassword]);
+            $stmpI->execute([$username, $hashPassword,$name]);
             return true;
         }
     }

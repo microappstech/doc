@@ -29,9 +29,8 @@
                             <div class="mt-10 flex flex-col items-center md:flex-row">
                                 <a href="/Tutorial/Views/Tutorials.php" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-[#EC9131] px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-[#884907] focus:outline-none md:mr-4 md:mb-0 md:w-auto">
                                     Get Startd</a>
-                                <a href="/" aria-label="" class="group inline-flex items-center font-semibold text-g1">Watch how
-                                    it works
-                                    <img src="" alt="">
+                                <a href="/Tutorial/Views/Register.php" aria-label="" class="group inline-flex items-center font-semibold text-g1 underline">
+                                    Create Account
                                 </a>
                             </div>
                         </div>
@@ -144,13 +143,13 @@
 
         </div>
         <!-- intro  -->
-        <div class="intro bg-white rounded-lg py-5">
+        <div class="intro bg-white rounded-lg pt-5">
             <div class="container flex flex-col mx-auto bg-white rounded-lg">
-                <div class="container flex flex-col items-center gap-16 mx-auto my-16">
+                <div class="container flex flex-col items-center gap-16 mx-auto mt-10">
                     <div class="flex flex-col gap-7">
                         <div class="flex flex-col gap-2 px-6 text-center w-10/12 mx-auto">
-                            <h2 class="text-3xl font-extrabold leading-tight lg:text-4xl text-dark-grey-900"> Well, Here you can find all your favorite technologies!</h2>
-                            <p class="text-base font-medium leading-7 text-dark-grey-600">Enjoy learning and test you skills with all quizes. <span class="font-extrabold text-[#EC9131]">All Free</span>.</p>
+                            <h2 class="text-3xl font-extrabold leading-tight lg:text-4xl text-dark-grey-900"> Well, Here you can learn and help others to learn </h2>
+                            <p class="text-base font-medium leading-7 text-dark-grey-600">Enjoy learning and test you skills with all quizes, and don't forget to add your knowledge for others people <span class="font-extrabold text-[#EC9131]">All Free</span>.</p>
                         </div>
                         <div class="flex items-center justify-center">
                             <button class="flex items-center justify-center py-4 text-white px-7 rounded-2xl bg-[#EC9131] hover:bg-[#884907] focus:ring-4 focus:ring-[#884907] transition duration-300">Don't forget to Support Us</button>
@@ -162,16 +161,17 @@
         <!-- end intro -->
         <!-- Cards Techologies -->
         <div class='flex min-h-screen items-center justify-center px-24'>
-            <div class="w-full mb-20  ">
-                <div class="group relative -ml-4 flex scroll-mt-40 items-center pl-4">
-                    <a href="#" class="absolute z-50 -ml-10 mb-2.5 rounded-md border border-blue-gray-50 bg-blue-gray-50/50 p-1 opacity-0 hover:opacity-100 group-hover:opacity-100" disabled="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" class="pointer-events-none h-3.5 w-3.5 rounded-lg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"></path>
-                        </svg>
-                    </a>
-                    <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-[#79C141]">Popular Tutorials</h2>
+            <div class="w-full mt-20  ">
+                <!-- here should title be -->
+                <div class="text-center pb-12">
+                    <h2 class="text-base font-bold text-indigo-600">
+                        Tutorials
+                    </h2>
+                    <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900">
+                        The popular Tutorials
+                    </h1>
                 </div>
-                <p class="block antialiased font-sans text-base font-light leading-relaxed text-inherit !mb-4 !font-normal !text-gray-600">The most popular tutorials on our platform.</p>
+
                 <div class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4" id="frameworks-integration">
                     <a class="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25" href="#">
                         <span class="my-6 grid h-24 w-24 place-items-center">
@@ -243,6 +243,80 @@
                         </span>
                     </a>
                 </div>
+            </div>
+        </div>
+        <!-- End Cards Technologies -->
+        
+        <!-- Cards Techologies -->
+        <div class='flex  items-center justify-center px-24'>
+            <div class="w-full mb-20  ">
+                <!-- component -->
+                <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+                    <div class="text-center pb-12">
+                        <h2 class="text-base font-bold text-indigo-600">
+                            Contrubitters
+                        </h2>
+                        <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900">
+                            The Best Contributors
+                        </h1>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="w-full bg-yellow-400 rounded-lg p-2 flex flex-col justify-center items-center">
+                            <div class="mb-8">
+                                <img class="object-center object-cover rounded-full h-36 w-36" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="photo">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xl text-gray-700 font-bold mb-2">Dany Bailey</p>
+                                <p class="text-base  font-normal">Software Engineer</p>
+                            </div>
+                        </div>
+                        <div class="w-full bg-yellow-300 rounded-lg p-2 flex flex-col justify-center items-center">
+                            <div class="mb-8">
+                                <img class="object-center object-cover rounded-full h-36 w-36" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="photo">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xl text-gray-700 font-bold mb-2">Lucy Carter</p>
+                                <p class="text-base text-gray-400 font-normal">Graphic Designer</p>
+                            </div>
+                        </div>
+                        <div class="w-full bg-yellow-300 rounded-lg p-2 flex flex-col justify-center items-center">
+                            <div class="mb-8">
+                                <img class="object-center object-cover rounded-full h-36 w-36" src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1176&q=80" alt="photo">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xl text-gray-700 font-bold mb-2">Jade Bradley</p>
+                                <p class="text-base text-gray-400 font-normal">Dev Ops</p>
+                            </div>
+                        </div>
+                        <div class="w-full bg-yellow-200 rounded-lg p-2 flex flex-col justify-center items-center">
+                            <div class="mb-8">
+                                <img class="object-center object-cover rounded-full h-36 w-36" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="photo">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xl text-gray-700 font-bold mb-2">Dany Bailey</p>
+                                <p class="text-base text-gray-400 font-normal">Software Engineer</p>
+                            </div>
+                        </div>
+                        <div class="w-full bg-yellow-50 rounded-lg p-2 flex flex-col justify-center items-center">
+                            <div class="mb-8">
+                                <img class="object-center object-cover rounded-full h-36 w-36" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="photo">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xl text-gray-700 font-bold mb-2">Lucy Carter</p>
+                                <p class="text-base text-gray-400 font-normal">Graphic Designer</p>
+                            </div>
+                        </div>
+                        <div class="w-full bg-yellow-50 rounded-lg p-2 flex flex-col justify-center items-center">
+                            <div class="mb-8">
+                                <img class="object-center object-cover rounded-full h-36 w-36" src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1176&q=80" alt="photo">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xl text-gray-700 font-bold mb-2">Jade Bradley</p>
+                                <p class="text-base text-gray-400 font-normal">Dev Ops</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
         <!-- End Cards Technologies -->

@@ -7,12 +7,12 @@
     <title>Tutorial Hub | Login</title>
 </head>
 <!-- component -->
-<?php require_once ("../../Services/Auth/LoginServices.php");
+<?php require_once ("../../Services/Auth/SecurityService.php");
 require_once ("../../Config/Config.php");
  ?>
 
 <?php 
-    $LoginService = new LoginService($pdo);
+    $LoginService = new SecurityService($pdo);
     if(isset($_POST["register"])) {
         try{
 
