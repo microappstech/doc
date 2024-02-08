@@ -2,7 +2,7 @@
     <?php include("../Services/TutorialService.php") ?>
     <?php include("../Config/Config.php") ?>
     <?php include("../Models/Tutorail.php") ?>
-    <?php include("../Functions/IsLLogged.php") ?>
+    <?php include("../Functions/ShowErrors.php") ?>
 <!doctype html>
 <html>
 <head>
@@ -48,7 +48,7 @@
                 <div class="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-4 " id="frameworks-integration">
                 <?php 
                     $tt = new TutorialService($pdo);
-                    $tutorials = $tt->getTutorialsForUser($_SESSION["userid"]);
+                    $tutorials = $tt->getAllTutorials();
                     
                     foreach ($tutorials as $tutorial) { ?>
                         <?php if($tutorial->Active) { ?>

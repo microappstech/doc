@@ -27,145 +27,9 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-  <style>
 
-* {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-   }
-    body {
-      font-family: 'IBM Plex Mono', sans-serif;
-    }
-    [x-cloak] {
-      display: none;
-    }
-
-    .line {
-      background: repeating-linear-gradient(
-        to bottom,
-        #eee,
-        #eee 1px,
-        #fff 1px,
-        #fff 8%
-      );
-    }
-    .tick {
-      background: repeating-linear-gradient(
-        to right,
-        #eee,
-        #eee 1px,
-        #fff 1px,
-        #fff 5%
-      );
-    }
-    
-   body {
-     font-family: "Inter", sans-serif;
-   }
-   .formbold-mb-5 {
-     margin-bottom: 20px;
-   }
-   .formbold-pt-3 {
-     padding-top: 12px;
-   }
-   .formbold-main-wrapper {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     padding: 48px;
-   }
- 
-   .formbold-form-wrapper {
-     margin: 0 auto;
-     max-width: 550px;
-     width: 100%;
-     background: white;
-   }
-   .formbold-form-label {
-     display: block;
-     font-weight: 500;
-     font-size: 16px;
-     color: #07074d;
-     margin-bottom: 12px;
-   }
-   .formbold-form-label-2 {
-     font-weight: 600;
-     font-size: 20px;
-     margin-bottom: 20px;
-   }
- 
-   .formbold-form-input {
-     width: 100%;
-     padding: 12px 24px;
-     border-radius: 6px;
-     border: 1px solid #e0e0e0;
-     background: white;
-     font-weight: 500;
-     font-size: 16px;
-     color: #6b7280;
-     outline: none;
-     resize: none;
-   }
-   .formbold-form-input:focus {
-     border-color: #6a64f1;
-     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-   }
- 
-   .formbold-btn {
-     text-align: center;
-     font-size: 16px;
-     border-radius: 6px;
-     padding: 14px 32px;
-     border: none;
-     font-weight: 600;
-     background-color: #6a64f1;
-     color: white;
-     cursor: pointer;
-   }
-   .formbold-btn:hover {
-     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-   }
- 
-   .formbold--mx-3 {
-     margin-left: -12px;
-     margin-right: -12px;
-   }
-   .formbold-px-3 {
-     padding-left: 12px;
-     padding-right: 12px;
-   }
-   .flex {
-     display: flex;
-   }
-   .flex-wrap {
-     flex-wrap: wrap;
-   }
-   .w-full {
-     width: 100%;
-   }
-   .formbold-radio {
-     width: 20px;
-     height: 20px;
-   }
-   .formbold-radio-label {
-     font-weight: 500;
-     font-size: 16px;
-     padding-left: 12px;
-     color: #070707;
-     padding-right: 20px;
-   }
-   @media (min-width: 540px) {
-     .sm\:w-half {
-       width: 50%;
-     }
-   }
- </style>
 </head>
 <body>
-
-   
-<div>
    <?php  include("../../Includes/NavBar.php") ?>
     <div class="flex overflow-hidden bg-white pt-16">
        <?php  include("../../Includes/SideBar.php") ?>
@@ -317,10 +181,11 @@
           </p>
        </div>
     </div>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://demo.Tutorial.com/windster/app.bundle.js"></script>
- </div>
+    
 
+    
+    <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>   
 
 <script>
     function app() {

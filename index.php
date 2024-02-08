@@ -13,7 +13,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <?php require_once("./Includes/NavBar.php") ?>
+    <?php require_once("./Components/NavBar.php") ?>
     <div class="main bg-white w-[94%] mx-auto">
 
         <div class="bg-white relative   flex items-center  n justify-center overflow-hidden z-50 ">
