@@ -17,22 +17,19 @@
                             <img class="w-16" src="<?php echo $Tutorial->getImage() ?>">
                          </a>
                       </li>
-                      
-
-                      
-                           <?php if ($DataReady) {
-                              foreach ($sections as $section) {
-                                    ?>
-                                    <li>
-                                          <a  href="#" onclick="loadContent(<?php echo $section->Id ?>, <?php echo $tutorialId ?>, this)" class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
-                                          <img class="w-5" src="<?php echo $Tutorial->getImage() ?>">
-                                             <span class="ml-3"><?php echo $section->Title ?></span>
-                                          </a>
-                                    </li>
-                                    <?php
-                                    }
-                                 }
-                                 ?>
+                      <?php if ($DataReady) {
+                        foreach ($sections as $section) {
+                              ?>
+                              <li>
+                                    <a  href="#" onclick="loadContent(<?php echo $section->Id ?>, <?php echo $tutorialId ?>, this)" class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
+                                    <img class="w-5" src="<?php echo $Tutorial->getImage() ?>">
+                                       <span class="ml-3"><?php echo $section->Title ?></span>
+                                    </a>
+                              </li>
+                              <?php
+                              }
+                           }
+                        ?>
                    </ul>
                    <div class="space-y-2 pt-2">
                    

@@ -35,7 +35,6 @@
               <div class="space-y-6 md:space-x-2 md:space-y-0">
                 <a
                 href="./AddQuiz.php"
-                target="_blank"
                 class="inline-flex items-center justify-center px-4 py-2 space-x-1 bg-blue-800 rounded-md shadow hover:bg-opacity-20"
               >
                 <span>
@@ -55,26 +54,17 @@
                           <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                             Title
                           </th>
-                          <th
-                            scope="col"
-                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                          >
+                          <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase" >
                             Description
                           </th>
-                          <th
-                            scope="col"
-                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                          >
+                          <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase" >
                             Viewrs
                           </th>                          
-                          <th
-                            scope="col"
-                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                          >
+                          <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase" >
                             Writer
                           </th>
-                          <th scope="col" class="relative px-6 py-3">
-                            <span class="sr-only">Edit</span>
+                          <th scope="col" class=" py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase" >
+                            Manage
                           </th>
                         </tr>
                       </thead>
@@ -87,6 +77,7 @@
                               <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                   <div class="flex items-center">
+                                    <img src="<?php echo $quiz->Image ?>" width="30" alt="">
                                     <div class="ml-4">
                                       <div class="text-sm text-gray-500"><?php echo $quiz->Name ?></div>
                                     </div>
@@ -95,8 +86,11 @@
                                 <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><?php echo $quiz->Description ?></td>
                                 <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><?php echo 0 ?></td>
                                 
-                                <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                <td class="px-1 py-4 text-sm font-medium text-right whitespace-nowrap">
                                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                </td>
+                                <td class="px-1 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
                                 </td>
                               </tr>
                           <?php } ?>
@@ -112,7 +106,7 @@
        
           </footer>
           <p class="text-center text-sm text-gray-500 my-10">
-             &copy; 2019-2021 <a href="#" class="hover:underline" target="_blank">Themesberg</a>. All rights reserved.
+             &copy; 2024 <a href="#" class="hover:underline" target="_blank">LearnHub</a>. All rights reserved.
           </p>
        </div>
     </div>

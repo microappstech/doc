@@ -29,9 +29,9 @@
                             <p class="text-base text-gray-700">The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn.</p>
                             <div class="mt-10 flex flex-col items-center md:flex-row">
                                 <a href="/Tutorial/Views/Tutorials.php" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-[#EC9131] px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-[#884907] focus:outline-none md:mr-4 md:mb-0 md:w-auto">
-                                    Get Startd</a>
-                                <a href="/Tutorial/Views/Register.php" aria-label="" class="group inline-flex items-center font-semibold text-g1 underline">
-                                    Create Account
+                                    Start Learning</a>
+                                <a href="/Tutorial/Views/Quizzes.php" class="group inline-flex items-center font-semibold text-g1 underline text-[#EC9131]">
+                                    Test Yourself
                                 </a>
                             </div>
                         </div>
@@ -161,10 +161,10 @@
         </div>
         <!-- end intro -->
         <!-- Cards Techologies -->
-        <div class='flex min-h-screen items-center justify-center px-24'>
-            <div class="w-full mt-20  ">
+        <div class='flex min-h-screen  px-24'>
+            <div class="w-full mt-10  ">
                 <!-- here should title be -->
-                <div class="text-center pb-12">
+                <div class="text-left  pb-12">
                     <h2 class="text-base font-bold text-indigo-600">
                         Tutorials
                     </h2>
@@ -249,11 +249,11 @@
         <!-- End Cards Technologies -->
         
         <!-- Cards Techologies -->
-        <div class='flex  items-center justify-center px-24'>
+        <div class='flex  px-24'>
             <div class="w-full mb-20  ">
                 <!-- component -->
-                <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
-                    <div class="text-center pb-12">
+                <section class="mx-auto  py-12">
+                    <div class="text-left pb-12">
                         <h2 class="text-base font-bold text-indigo-600">
                             Contrubitters
                         </h2>

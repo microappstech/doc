@@ -954,7 +954,7 @@
        
           </footer>
           <p class="text-center text-sm text-gray-500 my-10">
-             &copy; 2019-2021 <a href="#" class="hover:underline" target="_blank">Themesberg</a>. All rights reserved.
+             &copy; 2024 <a href="#" class="hover:underline" target="_blank">LearnHub</a>. All rights reserved.
           </p>
        </div>
     </div>
