@@ -15,6 +15,8 @@ class QuizService{
                     $quizData["id"],
                     $quizData["name"],
                     $quizData["description"],
+                    $quizData["Image"],
+                    $quizData["description"],
                     $quizData["Image"]
                 );
             }
@@ -56,13 +58,18 @@ class QuizService{
         $stmp->execute([$name, $Description,$image]);
         return $this->pdo->lastInsertId();
     }
+ 
+    
     public function DeleteQuiz($id){}
 
     // -------------- Answer service -------------
     public function createAnswer($desc,$quest){
         echo "------------------ crzeate answer ------------------- <br/>";
         echo "------------------ description $desc ------------------- <br/>";
+        echo "------------------ crzeate answer ------------------- <br/>";
+        echo "------------------ description $desc ------------------- <br/>";
         $stmp = $this->pdo->prepare("INSERT INTO answer (description,questid)VALUES (?,?)");
+        $stmp->execute([ $desc, $quest]);
         $stmp->execute([ $desc, $quest]);
         return $stmp;
     }
@@ -106,4 +113,5 @@ class QuizService{
 
             return $QuestionsObjects;
     }
+
 }
