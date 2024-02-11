@@ -43,6 +43,7 @@ if (isset($_GET['id'])) {
 <body>
    
 <div>
+   
    <?php require("../Components/NavBar.php") ?>
     <div class="flex overflow-hidden bg-white pt-16">
        <?php require("../Components/SideBar.php") ?>

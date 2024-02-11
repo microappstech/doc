@@ -8,9 +8,10 @@
     <title>Tutorial Hub | Login</title>
 </head>
 <!-- component -->
-<?php require_once ("../../Services/Auth/SecurityService.php");
-require_once ("../../Config/Config.php");
- ?>
+<?php 
+  require_once ("../../Services/Auth/SecurityService.php");
+  require_once ("../../Config/Config.php");
+?>
 
 <?php 
     $LoginService = new SecurityService($pdo);
@@ -38,7 +39,7 @@ require_once ("../../Config/Config.php");
  ?>
 
 <body class="antialiased bg-gradient-to-br from-yellow-100 to-white">
-    <div class="container mx-auto px-36">
+    <div class="container mx-auto xlg:px-36">
       <div
         class="flex flex-col text-center md:text-left md:flex-row h-screen justify-evenly md:items-center"
       >
