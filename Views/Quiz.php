@@ -1,5 +1,5 @@
 <?php
-    include_once("../Config/Config.php");
+    
     include_once('../Services/QuizService.php');
     include_once("../Models/Quiz.php");
     include_once("../Models/Answer.php");
@@ -9,14 +9,14 @@
 <?php 
     $QuizName = "React Js";
     
-if (isset($_GET['qid'])) {
+if (isset($_GET['qid']) && false ) {
     $qs = new QuizService($pdo);
     $quizId = $_GET['qid'];
     $quiz = $qs->getQuizById($quizId);
     $QuizName = $quiz->Name;
 
 }else{
-    header("Location: /Tutorial/Views/Quizzes.php");
+    // header("Location: /Tutorial/Views/Quizzes.php");
 }
 
 
@@ -29,114 +29,7 @@ if (isset($_GET['qid'])) {
     <title>Quiz || <?php echo $QuizName ?> </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <style>
-        /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap"); */
-
-:root {
-  --accent-color: #c7b0c3;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #eee;
-  font-family: "Poppins", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0;
-}
-
-.quiz-container {
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  width: 650px;
-  padding: 4rem;
-}
-
-.loading-bar {
-  width: 100%;
-  height: 5px;
-  background-color: #eee;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.loading-bar-progress {
-  background-color: var(--accent-color);
-  height: 100%;
-  width: 0;
-  transition: 0.3s ease;
-}
-
-h2 {
-  font-size: 22px;
-  text-align: center;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  font-size: 1.2rem;
-  margin: 1rem 0;
-}
-
-ul li input {
-  display: none;
-}
-
-ul li label {
-  cursor: pointer;
-  display: block;
-  color: #666;
-  width: 100%;
-  padding: 10px 20px;
-  border-radius: 50px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  transition: 0.1s ease;
-}
-
-ul li input:hover + label {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-}
-
-ul li input:checked + label {
-  outline: 2px solid var(--accent-color);
-  color: var(--accent-color);
-}
-
-button {
-  color: var(--accent-color);
-  background-color: transparent;
-  font-family: inherit;
-  border: none;
-  display: block;
-  cursor: pointer;
-  margin: auto;
-  font-size: 1.1rem;
-  font-family: inherit;
-  padding: 1rem;
-  transition: 0.1s ease;
-}
-
-button:hover {
-  transform: translateY(-3px);
-}
-
-button:active {
-  transform: translateY(2px);
-}
-
-    </style>
+    
 </head>
 <body>
     <div class="main">
@@ -159,31 +52,30 @@ button:active {
 
         <!--=============== FONT AWESOME ===============-->
         
-        <div class="quiz-container" id="quiz">
-        <h2 id="question">Question</h2>
-        <div class="loading-bar">
-            <div class="loading-bar-progress" id="loading-bar-progress"></div>
-        </div>
-        <ul>
-            <li>
-            <input type="radio" name="answer" id="a" class="answer">
-            <label for="a" id="a_text">Answer</label>
-            </li>
-            <li>
-            <input type="radio" name="answer" id="b" class="answer">
-            <label for="b" id="b_text">Answer</label>
-            </li>
-            <li>
-            <input type="radio" name="answer" id="c" class="answer">
-            <label for="c" id="c_text">Answer</label>
-            </li>
-            <li>
-            <input type="radio" name="answer" id="d" class="answer">
-            <label for="d" id="d_text">Answer</label>
-            </li>
-        </ul>
-        <button id="submit">Next <i class="fa-solid fa-chevron-right"></i></button>
-        </div>
+        <div class="col-8 my-5 mx-auto p-5 border border-secondary">
+                    <div class=" text-center p-3 border border-success my-2" >
+                        <h1>@currentQuestion.Description</h1>
+                    </div>
+                    <div class=" ">
+                        @foreach(var answer in currentQuestion.Answers){
+                            <div class="form-check p-0">
+                                <input type="radio" required class="btn-check" @onchange="@((args)=>Checked(currentQuestion.Id, answer.IsOk))" name="@($"{currentQuestion.Id}")" id="@($"{currentQuestion.Id}-{answer.Id}")" autocomplete="off" checked="false" >
+                                <label class="btn btn-light  border border-secondary w-100" for="@($"{currentQuestion.Id}-{answer.Id}")">@answer.Description</label>
+                            </div>
+                        }
+                    </div>
+                    @if(pos<questions.Count()-1){
+                        @if(!answered){
+                            <div class="row mx-auto col-4 my-5">
+                                <button @onclick="@(()=>Next())" class="btn btn-secondary">Next</button>
+                            </div>
+                        }
+                    }else{
+                        <div class="row mx-auto col-8 mb-5">
+                            <button @onclick="check" class="btn btn-primary w-100 " type="button">Submit</button>
+                        </div>
+                    }
+            </div>
     </div>
     <script>
         const quizData = [
