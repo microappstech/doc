@@ -16,7 +16,7 @@ if (isset($_GET['qid']) && false ) {
     $QuizName = $quiz->Name;
 
 }else{
-    // header("Location: /Tutorial/Views/Quizzes.php");
+     header("Location: /Tutorial/Views/Quizzes.php");
 }
 
 
@@ -33,49 +33,7 @@ if (isset($_GET['qid']) && false ) {
 </head>
 <body>
     <div class="main">
-        <!-- <h1 className="text-3xl font-sans mt-32 md:mt-48 lg:mt-64 font-bold text-gray-800 dark:text-gray-300 text-center">
-            <?php // echo $quiz->Name ?>
-        </h1>
-        <div className="bg-gray-50 dark:bg-gray-800 shadow-lg dark:shadow-dark rounded-2xl min-w-80 w-148">
-            <div className="pt-6 pb-2">
-                <?php foreach($quiz->Questions as $question){ ?>
-                    <div className="bg-gray-100 dark:bg-gray-900 mx-6 h-16 w-auto mb-4 rounded-md flex items-center">
-                        <input type="radio" name="answer" value={props.answer} className="ml-5 dark:bg-gray-800" />
-                        <label className="text-gray-700 dark:text-gray-400 text-lg ml-4">
-                            props.answer
-                        </label>
-                    </div>
-                <?php } ?>
-            </div>
-        </div> -->
-
-
-        <!--=============== FONT AWESOME ===============-->
         
-        <div class="col-8 my-5 mx-auto p-5 border border-secondary">
-                    <div class=" text-center p-3 border border-success my-2" >
-                        <h1>@currentQuestion.Description</h1>
-                    </div>
-                    <div class=" ">
-                        @foreach(var answer in currentQuestion.Answers){
-                            <div class="form-check p-0">
-                                <input type="radio" required class="btn-check" @onchange="@((args)=>Checked(currentQuestion.Id, answer.IsOk))" name="@($"{currentQuestion.Id}")" id="@($"{currentQuestion.Id}-{answer.Id}")" autocomplete="off" checked="false" >
-                                <label class="btn btn-light  border border-secondary w-100" for="@($"{currentQuestion.Id}-{answer.Id}")">@answer.Description</label>
-                            </div>
-                        }
-                    </div>
-                    @if(pos<questions.Count()-1){
-                        @if(!answered){
-                            <div class="row mx-auto col-4 my-5">
-                                <button @onclick="@(()=>Next())" class="btn btn-secondary">Next</button>
-                            </div>
-                        }
-                    }else{
-                        <div class="row mx-auto col-8 mb-5">
-                            <button @onclick="check" class="btn btn-primary w-100 " type="button">Submit</button>
-                        </div>
-                    }
-            </div>
     </div>
     <script>
         const quizData = [

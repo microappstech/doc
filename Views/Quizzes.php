@@ -13,10 +13,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Tutorial | Quizzes</title>
+    <link rel="shortcut icon" href="/Tutorial/Assets/img/favIcon.png" type="image/x-icon">
+    <title>LearnHub</title>
 </head>
 <body>
-    <?php include_once('../Includes/NavBar.php') ?>
+    <?php //include_once('../Includes/NavBar.php') ?>
+    <?php require_once("../Components/NavBar.php") ?>
     <div class="main"> 
         <div class='flex min-h-screen'>
             <div class="w-full bg-gray-100">
@@ -30,7 +32,7 @@
                                 <?php
                                 foreach($quizzes as $quiz ){ ?>
                                     <div class="relative group h-48 flex   flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                                    <a href="<?php echo "/Tutorial/Views/Quiz.php?qid=".$quiz->Id; ?>" class="block">
+                                    <a href="<?php echo "/Tutorial/Views/Quiz2.php?qid=".$quiz->Id; ?>" class="block">
                                         <div class="h-28">
                                             <div class="absolute -top-20 lg:top-[-10%] left-[5%] z-40  group-hover:top-[-40%] group-hover:opacity-[0.9] duration-300 w-[90%] bg-gray-100  h-48 bg-light-600 rounded-xl justify-items-center align-middle">
                                                 <img src="<?php echo $quiz->Image ?>"

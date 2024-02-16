@@ -45,7 +45,6 @@ class QuizService{
             $TempAnswer = 1;
             $questionId = $this->createQuestion($quest['description'],$quiz);
             foreach($quest["answers"] as $Answer){
-                echo $Answer;
                 $this->createAnswer($Answer,$questionId);
                 $TempAnswer = $TempAnswer+1;
             }
@@ -105,8 +104,8 @@ class QuizService{
                 $answers = $this->GetAnswersByQuId($question["id"]);
                 $QuestionsObjects[] = new Question(
                     $question["id"],
+                    $question["quizid"],                    
                     $question["description"],
-                    $question["quizid"],
                     $answers 
                 );
             }

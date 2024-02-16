@@ -47,6 +47,11 @@
         }
 
         public function getTutorialsForUser($userid) {
+            // if(empty()){
+
+            // }else{
+                
+            // }
             $stmt = $this->pdo->prepare("SELECT * FROM tutorials WHERE writerid = ?");
             $stmt->execute([$userid]);
             $tutorials = $stmt->fetchAll(PDO::FETCH_ASSOC);

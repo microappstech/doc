@@ -11,7 +11,23 @@ session_start();
 <?php
   $tt = new SectionService($pdo);
   $tutoServ = new TutorialService($pdo);
+
   $Tutorials = $tutoServ->getTutorialsForUser($_SESSION["userid"]);
+  
+  if(isAdmin($pdo)){ 
+    
+    $tutorials = $tutoServ->getAllTutorials();
+  }
+  else if(!(isAdmin($pdo)) & isset($_SESSION["userid"])) 
+  {
+    $userid = $_SESSION["userid"];
+    $tutorials = $tutoServ->getTutorialsForUser($userid);
+  }
+  else{
+    Header("Location : /Tutorial/Views/Auth/login.php");
+  }
+  
+  
   if(isset($_POST["delete"])){
     $result = $tt->deleteSection($_POST["sectionToDelete"]);
     if($result){

@@ -10,10 +10,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
-  
+  <link rel="shortcut icon" href="/Tutorial/Assets/img/favIcon.png" type="image/x-icon">
+  <title>LearnHub</title>  
 </head>
 <body class="bg-gray-100">
-<?php include("../Includes/NavBar.php") ?>
+<?php require_once("../Components/NavBar.php") ?>
     <div class="main"> 
         <div class='flex min-h-screen items-center justify-center md-px-24'>
             <div class="w-full px-16">

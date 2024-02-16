@@ -1,32 +1,43 @@
 <?php session_start() ?>
-<?php include_once("../../Constants.php") ?> 
-<?php include_once("../../Config/Config.php") ?> 
-<?php include_once("../../Services/TutorialService.php") ?> 
-<?php include_once("../../Models/Tutorail.php") ?>
-<?php
-  include_once("../../Functions/IsLLogged.php") 
- ?>
+<?php 
+  include_once("../../Constants.php");
+  include_once("../../Config/Config.php");
+  include_once("../../Services/TutorialService.php");
+  include_once("../../Models/Tutorail.php");
+  include_once("../../Functions/IsLLogged.php") ;
+  include_once("../../Functions/IsAdmin.php")  ;
 
+?>
+
+<?php
+  if(isAdmin($pdo)){ 
+    $tt = new TutorialService($pdo);
+    $tutorials = $tt->getAllTutorials();
+  }
+  else if(!(isAdmin($pdo)) & isset($_SESSION["userid"])) 
+  {
+    $userid = $_SESSION["userid"];
+    $tutorials = $tt->getTutorialsForUser($userid);
+  }
+  else{
+    Header("Location : /Tutorial/Views/Auth/login.php");
+  }
+  
+?>
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/soumwej/assets/images/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>Tutorial | Dashbord</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-
-    
-    
-
+    <title>LearnHub | Dashbord</title>
+    <script src="https://cdn.tailwindcss.com"></script>    
 </head>
 <body>
 
    
 <div>
-   <?php  include("../../Includes/NavBar.php") ?>
+   <?php  include("../../Components/NavBar.php") ?>
     <div class="flex overflow-hidden bg-white pt-16">
        <?php  include("../../Includes/SideBar.php") ?>
        <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
@@ -87,8 +98,6 @@
                       <tbody class="bg-white divide-y divide-gray-200">
                         <!-- <template x-for="i in 10" :key="i"> -->
                         <?php 
-                            $tt = new TutorialService($pdo);
-                            $tutorials = $tt->getTutorialsForUser(3);
                             foreach ($tutorials as $tutorial) { ?>
                               <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap">

@@ -39,7 +39,7 @@
  ?>
 
 <body class="antialiased bg-gradient-to-br from-yellow-100 to-white">
-    <div class="container mx-auto xlg:px-36">
+    <div class="container mx-auto px-40">
       <div
         class="flex flex-col text-center md:text-left md:flex-row h-screen justify-evenly md:items-center"
       >
@@ -62,7 +62,7 @@
           </div>
           <h1 class="text-5xl text-gray-800 font-bold">Turorial</h1>
           <p class="w-6/12 mx-auto md:mx-0 text-gray-500">
-            Tutorial and maintained by <strong><a href="www.hamza-mouddakir.tech" target="_blank" class="text-[#EC9131] underline ">Hamza mouddakir</a></strong>
+            Tutorial and maintained by <strong><a href="https://hamza-mouddakir.tech" target="_blank" class="text-[#EC9131] underline ">Hamza mouddakir</a></strong>
           </p>
         </div>
         <div class="w-full md:w-full lg:w-9/12 mx-auto md:mx-0">

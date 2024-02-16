@@ -1,30 +1,31 @@
+
 <?php
     
     include_once('../Services/QuizService.php');
     include_once("../Models/Quiz.php");
     include_once("../Models/Answer.php");
     include_once("../Models/Question.php");
-
+    include_once("../Config/Config.php")
 ?>
 <?php 
-    $QuizName = "React Js";
+    $QuizName = "";
     
-if (isset($_GET['qid']) && false ) {
+if (isset($_GET['qid'])) {
     $qs = new QuizService($pdo);
     $quizId = $_GET['qid'];
     $quiz = $qs->getQuizById($quizId);
-    $QuizName = $quiz->Name;
+    $NameQuiz = $quiz->Name;
 
 }else{
     // header("Location: /Tutorial/Views/Quizzes.php");
 }
-$NameQuiz = "React Js";
+
 $questions = [
     [
-        "numb" => 1,
-        "question" => "What challenge did codepen have in the month of March 2023? ??????? ???????? ????????? ?????????",
+        "Id" => 1,
+        "Description" => "What challenge did codepen have in the month of March 2023? ??????? ???????? ????????? ?????????",
         "answer" => "Buttons",
-        "options" => [
+        "Answers" => [
             "Shape",
             "Buttons",
             "Texture",
@@ -32,10 +33,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 2,
-        "question" => "What color shade is this hex #ffff00?",
+        "Id" => 2,
+        "Description" => "What color shade is this hex #ffff00?",
         "answer" => "yellow",
-        "options" => [
+        "Answers" => [
             "orange",
             "red",
             "yellow",
@@ -43,10 +44,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 3,
-        "question" => "How does a FOR loop start?",
+        "Id" => 3,
+        "Description" => "How does a FOR loop start?",
         "answer" => "for (i = 0; i <= 5; i++)",
-        "options" => [
+        "Answers" => [
             "for (i = 0; i <= 5; i++)",
             "for (i <= 5; i++)",
             "for i = 1 to 5",
@@ -54,10 +55,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 4,
-        "question" => "How do you round the number 7.25, to the nearest integer?",
+        "Id" => 4,
+        "Description" => "How do you round the number 7.25, to the nearest integer?",
         "answer" => "Math.round(7.25)",
-        "options" => [
+        "Answers" => [
             "Math.rnd(7.25)",
             "rnd(7.25)",
             "round(7.25)",
@@ -65,10 +66,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 5,
-        "question" => "What is the default value of the position property?",
+        "Id" => 5,
+        "Description" => "What is the default value of the position property?",
         "answer" => "static",
-        "options" => [
+        "Answers" => [
             "relative",
             "fixed",
             "static",
@@ -76,10 +77,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 6,
-        "question" => "How do you make each word in a text start with a capital letter?",
+        "Id" => 6,
+        "Description" => "How do you make each word in a text start with a capital letter?",
         "answer" => "text-transform:capitalize",
-        "options" => [
+        "Answers" => [
             "text-transform:capitalize",
             "text-style:capitalize",
             "transform:capitalize",
@@ -87,10 +88,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 7,
-        "question" => "How do you group selectors?",
+        "Id" => 7,
+        "Description" => "How do you group selectors?",
         "answer" => "Separate each selector with a comma",
-        "options" => [
+        "Answers" => [
             "Separate each selector with a slash",
             "Separate each selector with a plus sign",
             "Separate each selector with a space",
@@ -98,10 +99,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 8,
-        "question" => "How to write an IF statement in JavaScript?",
+        "Id" => 8,
+        "Description" => "How to write an IF statement in JavaScript?",
         "answer" => "if (i == 5)",
-        "options" => [
+        "Answers" => [
             "if (i == 5)",
             "if i = 5 then",
             "if i = 5",
@@ -109,10 +110,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 9,
-        "question" => "How do you select all p elements inside a div element?",
+        "Id" => 9,
+        "Description" => "How do you select all p elements inside a div element?",
         "answer" => "div p",
-        "options" => [
+        "Answers" => [
             "p,div",
             "div.p",
             "div + p",
@@ -120,10 +121,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 10,
-        "question" => "How can you detect the client's browser name?",
+        "Id" => 10,
+        "Description" => "How can you detect the client's browser name?",
         "answer" => "navigator.appName",
-        "options" => [
+        "Answers" => [
             "client.browserName",
             "client.navName",
             "navigator.appName",
@@ -131,10 +132,10 @@ $questions = [
         ]
     ],
     [
-        "numb" => 11,
-        "question" => "Just another quetion !!!!!!!!! !!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!",
+        "Id" => 11,
+        "Description" => "Just another quetion !!!!!!!!! !!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!",
         "answer" => "navigator.appName",
-        "options" => [
+        "Answers" => [
             "client.browserName !!!!!!!! !!!!!!!!!! !!!!!!!!!!!! !!!!!!!! !!!!!!!!!!!!! !!!!!!!!!!!! !!!!!!!!!!! !!!!!!!! !!!!!!!!!! !!!!!!!!! !!!!!!!!! !!!!!!!!!",
             "client.navName nnnn nnnnnn kkkkkkk llllll kj hjk jhkd sjqkldsfgqhdjf qdfgsjdhgf qsdghjgsdfquyze dhgfsdq ",
             "navigator.appName",
@@ -144,6 +145,9 @@ $questions = [
 
 ];
 
+
+
+$questions2 = $quiz->Questions;
     
 
 
@@ -167,6 +171,7 @@ $questions = [
 
             body{
                 background:black;
+                /* color : white; */
             }
 
 
@@ -201,10 +206,7 @@ $questions = [
                 background: rgba(255,170,1,1);
             }
 
-            .start_btn,
-            .info_box,
-            .quiz_box,
-            .result_box{
+            .exit_btn, .start_btn, .info_box, .quiz_box, .result_box{
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -212,6 +214,7 @@ $questions = [
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
                             0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
+
 
             .info_box.activeInfo,
             .quiz_box.activeQuiz,
@@ -226,7 +229,7 @@ $questions = [
 
             .start_btn {
                 top: 77%;
-                left: 46%;
+                left: calc( ( 100% - 300px ) / 2 );
                 box-shadow: none;
                 -webkit-animation-name: bounceInRight;
                 animation-name: bounceInRight;
@@ -294,7 +297,7 @@ $questions = [
                 } 
 
             /* START BUTTON FOR GAME */
-            .start_btn button{
+            .start_btn button, .exit_btn button{
                 font-size: 25px;
                 font-weight: 500;
                 color: orange;
@@ -656,14 +659,19 @@ $questions = [
 <div class="wrapper">
         <svg>
             <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                React Js
+                <?php echo $NameQuiz ?>
             </text>
         </svg>
         </div>
 
 
     <!-- start Quiz button -->
-    <div class="start_btn"><button>Start</button></div>
+    <div class="start_btn">
+        <button>Start</button>
+        <button onclick="history.back()">Exit</button>
+    </div>
+    
+    
 
     <!-- Info Box -->
     <div class="info_box">
@@ -729,6 +737,9 @@ $questions = [
     <script>
         
         let questions = <?php echo json_encode($questions); ?>;
+        let questions2 = <?php echo json_encode($questions2); ?>;
+        console.log(questions);
+        console.log(questions2);
 
         //selecting all required elements
         const start_btn = document.querySelector(".start_btn button");
@@ -742,17 +753,17 @@ $questions = [
         const timeText = document.querySelector(".timer .time_left_txt");
         const timeCount = document.querySelector(".timer .timer_sec");
 
-        // if startQuiz button clicked
+        
         start_btn.onclick = ()=>{
             info_box.classList.add("activeInfo"); //show info box
         }
 
-        // if exitQuiz button clicked
+        
         exit_btn.onclick = ()=>{
             info_box.classList.remove("activeInfo"); //hide info box
         }
 
-        // if continueQuiz button clicked
+        
         continue_btn.onclick = ()=>{
             info_box.classList.remove("activeInfo"); //hide info box
             quiz_box.classList.add("activeQuiz"); //show quiz box
@@ -775,21 +786,21 @@ $questions = [
 
         // if restartQuiz button clicked
         restart_quiz.onclick = ()=>{
-            quiz_box.classList.add("activeQuiz"); //show quiz box
-            result_box.classList.remove("activeResult"); //hide result box
+            quiz_box.classList.add("activeQuiz"); 
+            result_box.classList.remove("activeResult"); 
             timeValue = 15; 
             que_count = 0;
             que_numb = 1;
             userScore = 0;
             widthValue = 0;
-            showQuetions(que_count); //calling showQestions function
-            queCounter(que_numb); //passing que_numb value to queCounter
-            clearInterval(counter); //clear counter
-            clearInterval(counterLine); //clear counterLine
-            startTimer(timeValue); //calling startTimer function
-            startTimerLine(widthValue); //calling startTimerLine function
-            timeText.textContent = "Time Left"; //change the text of timeText to Time Left
-            next_btn.classList.remove("show"); //hide the next button
+            showQuetions(que_count); 
+            queCounter(que_numb); 
+            clearInterval(counter); 
+            clearInterval(counterLine); 
+            startTimer(timeValue); 
+            startTimerLine(widthValue); 
+            timeText.textContent = "Time Left"; 
+            next_btn.classList.remove("show"); 
         }
 
         
@@ -802,7 +813,7 @@ $questions = [
 
         
         next_btn.onclick = ()=>{
-            if(que_count < questions.length - 1){
+            if(que_count < questions2.length - 1){
                 que_count++; 
                 que_numb++;
                 showQuetions(que_count);
@@ -822,50 +833,52 @@ $questions = [
 
         
         function showQuetions(index){
+            
             const que_text = document.querySelector(".que_text");
+            console.log(questions2[index].Answers);
 
-            let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-            let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
-            + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-            + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
-            + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
-            que_text.innerHTML = que_tag; //adding new span tag inside que_tag
-            option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+            let que_tag = '<span>'+ questions2[index].Id + ". " + questions2[index].Description +'</span>';
+            let option_tag = '<div class="option" data-x="'+ questions2[index].Answers[0].IsOk +'"><span>'+ questions2[index].Answers[0].Description +'</span></div>'
+            + '<div class="option" data-x="'+ questions2[index].Answers[1].IsOk +'"><span>'+ questions2[index].Answers[1].Description +'</span></div>'
+            + '<div class="option" data-x="'+ questions2[index].Answers[2].IsOk +'"><span>'+ questions2[index].Answers[2].Description +'</span></div>'
+            + '<div class="option" data-x="'+ questions2[index].Answers[3].IsOk +'"><span>'+ questions2[index].Answers[3].Description +'</span></div>';
+            que_text.innerHTML = que_tag; 
+            option_list.innerHTML = option_tag; 
             
             const option = option_list.querySelectorAll(".option");
 
-            // set onclick attribute to all available options
             for(i=0; i < option.length; i++){
                 option[i].setAttribute("onclick", "optionSelected(this)");
             }
         }
-        // creating the new div tags which for icons
-        let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
-        let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+        
+        let tickIconTag = '<div class="icon tick"><i class="fas fa-check" style="line-height: unset;"></i></div>';
+        let crossIconTag = '<div class="icon cross"><i class="fas fa-times"  style="line-height: unset;"></i></div>';
 
-        //if user clicked on option
+        
         function optionSelected(answer){
-            clearInterval(counter); //clear counter
-            clearInterval(counterLine); //clear counterLine
-            let userAns = answer.textContent; //getting user selected option
-            let correcAns = questions[que_count].answer; //getting correct answer from array
-            const allOptions = option_list.children.length; //getting all option items
+            clearInterval(counter); 
+            clearInterval(counterLine); 
+            let userAns = answer.textContent;
+            let correcAns = questions[que_count].answer; 
+            const allOptions = option_list.children.length; 
+            let isOk = answer.getAttribute('data-x');
             
-            if(userAns == correcAns){ //if user selected option is equal to array's correct answer
-                userScore += 1; //upgrading score value with 1
-                answer.classList.add("correct"); //adding green color to correct selected option
-                answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
+            if(isOk==1){ 
+                userScore += 1; 
+                answer.classList.add("correct"); 
+                answer.insertAdjacentHTML("beforeend", tickIconTag); 
                 console.log("Correct Answer");
                 console.log("Your correct answers = " + userScore);
             }else{
-                answer.classList.add("incorrect"); //adding red color to correct selected option
-                answer.insertAdjacentHTML("beforeend", crossIconTag); //adding cross icon to correct selected option
-                console.log("Wrong Answer");
+                answer.classList.add("incorrect"); 
+                answer.insertAdjacentHTML("beforeend", crossIconTag); 
+                
 
                 for(i=0; i < allOptions; i++){
-                    if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer 
-                        option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-                        option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+                    if(option_list.children[i].textContent == correcAns){ 
+                        option_list.children[i].setAttribute("class", "option correct"); 
+                        option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); 
                         console.log("Auto selected correct answer.");
                     }
                 }
@@ -882,15 +895,15 @@ $questions = [
             result_box.classList.add("activeResult"); 
             const scoreText = result_box.querySelector(".score_text");
             if (userScore > 3){                 
-                let scoreTag = '<span>Congrats!, You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
+                let scoreTag = '<span>Congrats!, You got <p>'+ userScore +'</p> out of <p>'+ questions2.length +'</p></span>';
                 scoreText.innerHTML = scoreTag;  
             }
             else if(userScore > 1){ 
-                let scoreTag = '<span>and nice 😎, You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
+                let scoreTag = '<span>and nice 😎, You got <p>'+ userScore +'</p> out of <p>'+ questions2.length +'</p></span>';
                 scoreText.innerHTML = scoreTag;
             }
             else{ 
-                let scoreTag = '<span>and sorry 😐, You got only <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
+                let scoreTag = '<span>and sorry 😐, You got only <p>'+ userScore +'</p> out of <p>'+ questions2.length +'</p></span>';
                 scoreText.innerHTML = scoreTag;
             }
         }
@@ -937,7 +950,7 @@ $questions = [
 
         function queCounter(index){
             
-            let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
+            let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions2.length +'</p> Questions</span>';
             bottom_ques_counter.innerHTML = totalQueCounTag; 
         }
     </script>
