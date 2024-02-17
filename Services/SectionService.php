@@ -60,7 +60,7 @@
             return $SectionObjects;
         }
         public function getSectionsByTutoId($tutoId) {
-            $stmt = $this->pdo->query("select * from sections where TutorialId = ?");
+            $stmt = $this->pdo->prepare("SELECT * from sections where TutorialId = ?");
             $stmt->execute([$tutoId]);
             $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $SectionObjects = [];
@@ -69,7 +69,7 @@
                     $sectionData["Id"],
                     $sectionData["Title"],
                     $sectionData["Description"],
-                    $sectionData["Content"],
+                    0,
                     $sectionData["TutorialId"],
                 );
             }

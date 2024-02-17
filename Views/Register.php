@@ -75,8 +75,10 @@
 
                     </div>
                     <div class="my-4 flex items-center justify-end space-x-4">
-                        <button class="bg-gray-600 hover:bg-gray-900 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase w-1/2">Github</button>
-                        <button class="bg-orange-600 hover:bg-orange-900 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase w-1/2">Google</button>
+                        <button type="button" class="bg-gray-600 hover:bg-gray-900 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase w-1/2  cursor-wait">
+                            <span class="">Github</span>
+                        </button>
+                        <button type="button" class="bg-orange-600 hover:bg-orange-900 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase w-1/2 cursor-wait">Google</button>
                     </div>
                 </form>
             </div>

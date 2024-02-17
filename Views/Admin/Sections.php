@@ -1,27 +1,33 @@
-<?php 
-session_start();
+<?php session_start(); ?>
+<?php
+
 ?>
-<?php include_once("../../Constants.php") ?> 
-<?php include_once("../../Config/Config.php") ?> 
-<?php include_once("../../Services/SectionService.php") ?> 
-<?php include_once("../../Models/Section.php") ?>
-<?php include_once("../../Models/Tutorail.php") ?>
-<?php include_once('../../Services/TutorialService.php') ?>
-<?php include_once('../../Functions/IsLLogged.php') ?>
+
+
+<?php
+  include_once("../../Constants.php");
+  include_once("../../Config/Config.php");
+  include_once("../../Services/SectionService.php");
+  include_once("../../Models/Section.php");
+  include_once("../../Models/Tutorail.php");
+  include_once('../../Services/TutorialService.php');
+  include_once('../../Functions/IsLLogged.php');
+  include_once("../../Functions/IsAdmin.php");
+ 
+ ?>
 <?php
   $tt = new SectionService($pdo);
   $tutoServ = new TutorialService($pdo);
-
-  $Tutorials = $tutoServ->getTutorialsForUser($_SESSION["userid"]);
+  echo $_SESSION["userid"];
+  $sections = $tt->getAllSections();
   
-  if(isAdmin($pdo)){ 
-    
-    $tutorials = $tutoServ->getAllTutorials();
+  if(isAdmin($pdo)){     
+    $Tutorials = $tutoServ->getAllTutorials();
   }
   else if(!(isAdmin($pdo)) & isset($_SESSION["userid"])) 
   {
     $userid = $_SESSION["userid"];
-    $tutorials = $tutoServ->getTutorialsForUser($userid);
+    $Tutorials = $tutoServ->getTutorialsForUser($userid);
   }
   else{
     Header("Location : /Tutorial/Views/Auth/login.php");
@@ -63,10 +69,10 @@ session_start();
             <h1 class="text-2xl font-semibold whitespace-nowrap">Sections</h1>
             <div class="form-control px-5 w-full">
               <div class="max-w-2xl mx-auto ">
-                  <select id="countries" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                    <option selected>Choose a country</option>
+                  <select id="tutorials" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                    <option selected>Choose a tutorial</option>
                     <?php foreach($Tutorials as $tuto) { ?>    
-                      <option ><?php echo $tuto->getTitle() ?></option>
+                      <option value="<?php echo $tuto->getId() ?>"><?php echo $tuto->getTitle() ?></option>
                     <?php } ?>
                   </select>
                 
@@ -128,12 +134,8 @@ session_start();
                       </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                      <!-- <template x-for="i in 10" :key="i"> -->
-                      <?php 
-                          
-                          // $sections = $tt->getAllSections();
-                          $sections = [];
-                          foreach ($sections as $section) { ?>
+                      
+                      <?php foreach ($sections as $section) { ?>
                             <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                               <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
@@ -170,6 +172,7 @@ session_start();
                               </td>
                             </tr>
                         <?php } ?>
+                      
                       <!-- </template> -->
                     </tbody>
                   </table>
@@ -192,23 +195,37 @@ session_start();
  </div>
 
 <script>
-document.getElementById('countries').addEventListener('change', function() {
-    var selectedTutorialId = this.value; // Get the selected tutorial ID
-    // Send an AJAX request to your PHP script
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // Handle the response from the PHP script
-                console.log(xhr.responseText);
-            } else {
-                console.error('Request failed: ' + xhr.status);
-            }
-        }
-    };
-    xhr.open('GET', '/Tutorial/Functions/LoadSectionOfTuto.php?TutoId=' + selectedTutorialId, true);
-    xhr.send();
-});
+  document.getElementById('tutorials').addEventListener('change', function() {
+      var selectedTutorialId = this.value;     
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                  console.log(" xhr.responseText");
+                  var sections = (xhr.responseText);
+
+                  // Send the data back to the server with another XMLHttpRequest
+                   var xhr2 = new XMLHttpRequest();
+                   xhr2.open('POST',"/Tutorial/Views/Admin/Sections.php",  true);
+                   xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                   xhr2.onload = function(){
+                    if(xhr2.status === 200){
+                      
+                      
+                    }else{
+                      console.error('Request failed: ' + xhr2.status);
+                    }
+                   }
+                   xhr2.send('sections=' + encodeURIComponent(JSON.stringify(sections)));
+
+              } else {
+                  console.error('Request failed: ' + xhr.status);
+              }
+          }
+      };
+      xhr.open('GET', '/Tutorial/Functions/LoadSectionOfTuto.php?TutoId=' + selectedTutorialId, true);
+      xhr.send();
+  });
 </script>
 </body>
 </html>
