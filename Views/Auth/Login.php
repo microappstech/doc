@@ -19,14 +19,20 @@
         try{
 
             $result = $LoginService->login($_POST["username"],$_POST["password"]);
-            if($result!=false) {
+            if($result === null){
+              $TitleAlert ="404";
+              $MessageAlert =   "user name or password is incorrect";
+              $ColorAlert = "orange";
+              include ("../Components/Alert.php");
+            }
+            else if($result!=false & $result !== null) {
                 header("Location:"."/Tutorial/Views/Admin/index.php");
                 $_SESSION["logged"]=true;
                 $_SESSION["userid"]=$result["id"];
             }
             else {
               $TitleAlert ="Error";
-              $MessageAlert = "Something wrong";
+              $MessageAlert = $result;// "Something wrong";
               $ColorAlert = "red";
               include ("../Components/Alert.php");
             }
@@ -128,9 +134,9 @@
                     >Recover password!</a
                   >
                   <a
-                    href="#"
+                    href="/Tutorial/Views/Register.php"
                     class="w-full text-center font-medium text-gray-500"
-                    >Singup!</a
+                    >Sign up!</a
                   >
                 </div>
               </div>

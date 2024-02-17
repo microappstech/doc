@@ -10,8 +10,8 @@
 ?>
 
 <?php
+  $tt = new TutorialService($pdo);
   if(isAdmin($pdo)){ 
-    $tt = new TutorialService($pdo);
     $tutorials = $tt->getAllTutorials();
   }
   else if(!(isAdmin($pdo)) & isset($_SESSION["userid"])) 

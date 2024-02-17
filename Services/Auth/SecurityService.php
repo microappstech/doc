@@ -11,9 +11,14 @@ class SecurityService {
             $stmp = $this->pdo->prepare("select * from users where username = ?");
             $stmp->execute([$username]);
             $user = $stmp->fetch(PDO::FETCH_ASSOC);
-            if($user != null && password_verify($password, $user["password"])) {
+            var_dump($user);
+            if($user == null){
+                return null;
+            }
+            else if($user!==null && password_verify($password, $user["password"])) {
                 return $user;
-            }else{
+            }
+            else {
                 return false;
             }
         }catch(Exception $e){

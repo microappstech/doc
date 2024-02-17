@@ -11,7 +11,7 @@
    $authorized = in_array('Admin', $roles);
    if(!$authorized){
       echo "<script>window.alert('Your are not authorized')</script>";
-      Header("Location:/Tutorial/index.php");
+      //Header("Location:/Tutorial/index.php");
    }else{
 
    }
