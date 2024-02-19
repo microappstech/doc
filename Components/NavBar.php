@@ -4,7 +4,7 @@
          <div class="flex items-center justify-start">
             
             <a href="/Tutorial" class="text-xl font-bold flex items-center lg:ml-2.5">
-               <img src="/Tutorial/Assets/img/logo.png" class="h-10 mr-2" alt="Windster Logo">
+               <img src="/Tutorial/Assets/img/logo.png"  class="h-10 mr-2" alt="Windster Logo">
                <!-- <span class="self-center whitespace-nowrap">Tutorial</span> -->
             </a>
          </div>

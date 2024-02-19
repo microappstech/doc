@@ -8,7 +8,26 @@ class QuizService{
     public function getAllQuizzes(){
         $stmt = $this->pdo->query("SELECT * from quiz");
         $quizzes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $QuizObjects = [];
+        $QuizObjects = [];
+
+            foreach ($quizzes as $quizData) {
+                $QuizObjects[] = new Quiz(
+                    $quizData["id"],
+                    $quizData["name"],
+                    $quizData["description"],
+                    $quizData["Image"],
+                    $quizData["description"],
+                    $quizData["Image"]
+                );
+            }
+
+            return $QuizObjects;
+    }
+    public function getAllQuizzesForUser($userid){
+        $stmt = $this->pdo->prepare("SELECT * from quiz WHERE writerid = ?");
+        $stmt->execute([$userid]);
+        $quizzes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $QuizObjects = [];
 
             foreach ($quizzes as $quizData) {
                 $QuizObjects[] = new Quiz(
@@ -39,22 +58,23 @@ class QuizService{
         return $quizObjects;
     }
 
-    public function CraeteFullQuiz($image,$quizName, $quizDescription, $QuizData){
-        $quiz = $this->CreateQuiz($image,$quizName,$quizDescription);
+    public function CraeteFullQuiz($image,$quizName, $quizDescription, $QuizData,$userid){
+        $quiz = $this->CreateQuiz($image,$quizName,$quizDescription,$userid);
         foreach($QuizData["questions"] as $quest){
             $TempAnswer = 1;
             $questionId = $this->createQuestion($quest['description'],$quiz);
             foreach($quest["answers"] as $Answer){
-                $this->createAnswer($Answer,$questionId);
-                $TempAnswer = $TempAnswer+1;
+            
+            $this->createAnswer($Answer,$questionId);
+            $TempAnswer = $TempAnswer+1;
             }
         }
         return true;
     }
     
-    public function CreateQuiz($image,$name,$Description){
-        $stmp = $this->pdo->prepare("INSERT INTO quiz (name, description,image) VALUES (?,?,?)");
-        $stmp->execute([$name, $Description,$image]);
+    public function CreateQuiz($image,$name,$Description,$userid){
+        $stmp = $this->pdo->prepare("INSERT INTO quiz (name, description,image,writerid) VALUES (?,?,?,?)");
+        $stmp->execute([$name, $Description,$image,$userid]);
         return $this->pdo->lastInsertId();
     }
  
@@ -62,14 +82,9 @@ class QuizService{
     public function DeleteQuiz($id){}
 
     // -------------- Answer service -------------
-    public function createAnswer($desc,$quest){
-        echo "------------------ crzeate answer ------------------- <br/>";
-        echo "------------------ description $desc ------------------- <br/>";
-        echo "------------------ crzeate answer ------------------- <br/>";
-        echo "------------------ description $desc ------------------- <br/>";
-        $stmp = $this->pdo->prepare("INSERT INTO answer (description,questid)VALUES (?,?)");
-        $stmp->execute([ $desc, $quest]);
-        $stmp->execute([ $desc, $quest]);
+    public function createAnswer($Answer,$quest){
+        $stmp = $this->pdo->prepare("INSERT INTO answer (description,questid,IsOk)VALUES (?,?,?)");
+        $stmp->execute([ $Answer->content, $quest,$Answer->isOk]);
         return $stmp;
     }
     public function GetAnswersByQuId($id){

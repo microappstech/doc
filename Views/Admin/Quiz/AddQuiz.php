@@ -18,7 +18,7 @@
             $data_uri = 'data:' . $mime_type . ';base64,' . $base64_img;
         } 
 
-
+        $userid = $_SESSION["userid"];
         $sq = new QuizService($pdo);
         $quizData = array("questions" => array());
         for ($i = 1; $i <= 4; $i++) {
@@ -27,18 +27,27 @@
             $answers = array();
             for ($j = 1; $j <= 4; $j++) {
                 $answerKey = "answer" . $j . "q" . $i;
-                $answer = $_POST[$answerKey];
-                $answers["answer" . $j] = $answer;
+                $answerContent = $_POST[$answerKey];
+                $answerObject = new stdClass();
+                $answerObject->content = $answerContent;
+                $answerObject->description = "";
+                $answerObject->isOk = 0;
+
+                if ($_POST["CorrectAnswerq".$i] =="answer" . $j . "q" . $i) {
+                    $answerObject->isOk = 1;
+                }
+                $answers["answer" . $j] = $answerObject;
                 
             }
             $quizData["questions"][$questionKey] = array("description" => $questionDesc, "answers" => $answers);
         }
         $pdo->beginTransaction();
-        $result = $sq->CraeteFullQuiz($data_uri, $_POST['quizname'], $_POST['quizdescription'],$quizData);
+        $result = $sq->CraeteFullQuiz($data_uri, $_POST['quizname'], $_POST['quizdescription'],$quizData,$userid);
+
         if($result==="true" || $result === true){
-            $pdo->commit();
-            echo "<script>window.alert('Quiz Created Successful')</script>";
-            header("Location: /Tutorial/Views/Admin/Quiz/Quizzes.php");
+             $pdo->commit();
+             header("Location: /Tutorial/Views/Admin/Quiz/Quizzes.php");
+                echo "<script>window.alert('Quiz Created Successful')</script>";
         }else{
             $pdo->rollBack();
             echo "<script>window.alert('something wrong')</script>";
@@ -61,7 +70,7 @@
   color: rgb(158, 146, 146);
 }
 .radio input:checked ~ label {
-  background-color: rgb(70, 230, 22);
+  background-color: darkgreen;
   color: white;
 }
 </style>
@@ -69,7 +78,7 @@
 <body>
    <?php  include("../../../Includes/NavBar.php") ?>
     <div class="flex overflow-hidden bg-white pt-16">
-       <?php  include("../../../Includes/SideBar.php") ?>
+       <?php  //include("../../../Includes/SideBar.php") ?>
        <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
        <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
        <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
@@ -125,8 +134,8 @@
                                                     <div class="flex">
                                                         <input name="answer1q1" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 mr-2" id="grid-first-name" type="text" required="true" placeholder="the 1rt answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq1" type="radio" id="answer1q1" hidden="hidden" value="answer1q1" />
-                                                            <label for="answer1q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq1" type="radio" id="answer1q1" hidden="hidden" value="answer1q1" />
+                                                            <label for="answer1q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -139,8 +148,8 @@
                                                     <div class="flex">
                                                         <input name="answer2q1" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 2nd answer" required >
                                                         <div class="inline-block radio">
-                                                            <input name="answerq1" type="radio" id="answer2q1" hidden="hidden" value="answer2q1" />
-                                                            <label for="answer2q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq1" type="radio" id="answer2q1" hidden="hidden" value="answer2q1" />
+                                                            <label for="answer2q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -155,8 +164,8 @@
                                                     <div class="flex">
                                                         <input name="answer3q1" class="mr-2 appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-first-name" type="text" required="true" placeholder="the 3rd answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq1" type="radio" id="answer3q1" hidden="hidden" value="answer3q1" />
-                                                            <label for="answer3q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq1" type="radio" id="answer3q1" hidden="hidden" value="answer3q1" />
+                                                            <label for="answer3q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -169,8 +178,8 @@
                                                     <div class="flex">
                                                         <input name="answer4q1" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 4th answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq1" type="radio" id="answer4q1" hidden="hidden" value="answer4q1" />
-                                                            <label for="answer4q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq1" type="radio" id="answer4q1" hidden="hidden" value="answer4q1" />
+                                                            <label for="answer4q1" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -205,8 +214,8 @@
                                                     <div class="flex">
                                                         <input name="answer1q2" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 mr-2" id="grid-first-name" type="text" required="true" placeholder="the 1rt answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq2" type="radio" id="answer1q2" hidden="hidden" value="answer1q2" required/>
-                                                            <label for="answer1q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq2" type="radio" id="answer1q2" hidden="hidden" value="answer1q2" required/>
+                                                            <label for="answer1q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer">
                                                                 true
                                                             </label>
                                                         </div>
@@ -219,8 +228,8 @@
                                                     <div class="flex">
                                                         <input name="answer2q2" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 2nd answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq2" type="radio" id="answer2q2" hidden="hidden" value="answer2q2" required/>
-                                                            <label for="answer2q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq2" type="radio" id="answer2q2" hidden="hidden" value="answer2q2" required/>
+                                                            <label for="answer2q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer">
                                                                 true
                                                             </label>
                                                         </div>
@@ -235,8 +244,8 @@
                                                     <div class="flex">
                                                         <input name="answer3q2" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 mr-2" id="grid-first-name" type="text" required="true" placeholder="the 3rd answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq2" type="radio" id="answer3q2" hidden="hidden" value="answer3q2" required/>
-                                                            <label for="answer3q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq2" type="radio" id="answer3q2" hidden="hidden" value="answer3q2" required/>
+                                                            <label for="answer3q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer">
                                                                 true
                                                             </label>
                                                         </div>
@@ -249,8 +258,8 @@
                                                     <div class="flex">
                                                         <input name="answer4q2" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 4th answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq2" type="radio" id="answer4q2" hidden="hidden" value="answer4q2" required/>
-                                                            <label for="answer4q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq2" type="radio" id="answer4q2" hidden="hidden" value="answer4q2" required/>
+                                                            <label for="answer4q2" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer">
                                                                 true
                                                             </label>
                                                         </div>
@@ -284,8 +293,8 @@
                                                     <div class="flex">
                                                         <input name="answer1q3" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 mr-2" id="grid-first-name" type="text" required="true" placeholder="the 1rt answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq3" type="radio" id="answer1q3" hidden="hidden" value="answer1q3" required/>
-                                                            <label for="answer1q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq3" type="radio" id="answer1q3" hidden="hidden" value="answer1q3" required/>
+                                                            <label for="answer1q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14  cursor-pointer">
                                                                 true
                                                             </label>
                                                         </div>
@@ -298,8 +307,8 @@
                                                     <div class="flex">
                                                         <input name="answer2q3" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 2nd answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq3" type="radio" id="answer2q3" hidden="hidden" value="answer2q3" required/>
-                                                            <label for="answer2q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq3" type="radio" id="answer2q3" hidden="hidden" value="answer2q3" required/>
+                                                            <label for="answer2q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -314,8 +323,8 @@
                                                     <div class="flex">
                                                         <input name="answer3q3" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 mr-2" id="grid-first-name" type="text" required="true" placeholder="the 3rd answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq3" type="radio" id="answer3q3" hidden="hidden" value="answer3q3" required/>
-                                                            <label for="answer3q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq3" type="radio" id="answer3q3" hidden="hidden" value="answer3q3" required/>
+                                                            <label for="answer3q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -328,8 +337,8 @@
                                                     <div class="flex">
                                                         <input name="answer4q3" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 4th answer">
                                                         <div class="inline-block radio">
-                                                            <input name="answerq3" type="radio" id="answer4q3" hidden="hidden" value="answer4q3" required/>
-                                                            <label for="answer4q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq3" type="radio" id="answer4q3" hidden="hidden" value="answer4q3" required/>
+                                                            <label for="answer4q3" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -363,8 +372,8 @@
                                                     <div class="flex">
                                                         <input name="answer1q4" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 mr-2" id="grid-first-name" type="text" required="true" required placeholder="the 1rt answer">
                                                             <div class="inline-block radio">
-                                                            <input name="answerq4" type="radio" id="answer1q4" hidden="hidden" value="answer1q4" required/>
-                                                            <label for="answer1q4" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq4" type="radio" id="answer1q4" hidden="hidden" value="answer1q4" required/>
+                                                            <label for="answer1q4" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -377,8 +386,8 @@
                                                     <div class="flex">
                                                         <input name="answer2q4" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 2nd answer">
                                                             <div class="inline-block radio">
-                                                            <input name="answerq4" type="radio" id="answer2q4" hidden="hidden" value="answer2q4" required/>
-                                                            <label for="answer2q4" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq4" type="radio" id="answer2q4" hidden="hidden" value="answer2q4" required/>
+                                                            <label for="answer2q4" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -393,8 +402,8 @@
                                                     <div class="flex">
                                                         <input name="answer3q4" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 mr-2" id="grid-first-name" type="text" required="true" placeholder="the 3rd answer">
                                                             <div class="inline-block radio">
-                                                            <input name="answerq4" type="radio" id="answer3q4" hidden="hidden" value="answer3q4" required/>
-                                                            <label for="answer3q4" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
+                                                            <input name="CorrectAnswerq4" type="radio" id="answer3q4" hidden="hidden" value="answer3q4" required/>
+                                                            <label for="answer3q4" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14 cursor-pointer" >
                                                                 true
                                                             </label>
                                                         </div>
@@ -407,7 +416,7 @@
                                                     <div class="flex">
                                                         <input name="answer4q4" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2" id="grid-last-name" type="text" required="true" placeholder="the 4th answer">
                                                             <div class="inline-block radio">
-                                                            <input name="answerq4" type="radio" id="answer4q4" hidden="hidden" value="answer4q4" required/>
+                                                            <input name="CorrectAnswerq4" type="radio" id="answer4q4" hidden="hidden" value="answer4q4" required/>
                                                             <label for="answer4q4" class="px-2 py-1 rounded-lg flex justify-center items-center font-bold w-10 h-10 lg:w-14 lg:h-14" >
                                                                 true
                                                             </label>

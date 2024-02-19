@@ -1,10 +1,6 @@
 <?php session_start(); ?>
 <?php
 
-?>
-
-
-<?php
   include_once("../../Constants.php");
   include_once("../../Config/Config.php");
   include_once("../../Services/SectionService.php");
@@ -18,14 +14,14 @@
 <?php
   $tt = new SectionService($pdo);
   $tutoServ = new TutorialService($pdo);
-  echo $_SESSION["userid"];
-  $sections = $tt->getAllSections();
-  
+    
   if(isAdmin($pdo)){     
+    $sections = $tt->getAllSections();
     $Tutorials = $tutoServ->getAllTutorials();
   }
   else if(!(isAdmin($pdo)) & isset($_SESSION["userid"])) 
   {
+    $sections = $tt->getAllSections();
     $userid = $_SESSION["userid"];
     $Tutorials = $tutoServ->getTutorialsForUser($userid);
   }

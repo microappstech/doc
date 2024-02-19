@@ -17,7 +17,7 @@ if (isset($_GET['qid'])) {
     $NameQuiz = $quiz->Name;
 
 }else{
-    // header("Location: /Tutorial/Views/Quizzes.php");
+     header("Location: /Tutorial/Views/Quizzes.php");
 }
 
 $questions = [
@@ -149,7 +149,9 @@ $questions = [
 
 $questions2 = $quiz->Questions;
     
-
+echo "<pre>";
+print_r($questions2);
+echo "</pre>"
 
 ?>
 <!DOCTYPE html>

@@ -1,10 +1,27 @@
 <?php session_start() ?>
-<?php include_once("../../../Constants.php") ?> 
-<?php include_once("../../../Config/Config.php") ?> 
-<?php include_once("../../../Models/Quiz.php") ?>
-<?php include_once("../../../Services/QuizService.php") ?>
-<?php include_once("../../../Models/Question.php") ?>
-<?php ?>
+<?php 
+  include_once("../../../Constants.php");
+  include_once("../../../Config/Config.php");
+  include_once("../../../Models/Quiz.php");
+  include_once("../../../Services/QuizService.php");
+  include_once("../../../Models/Question.php");
+  include_once("../../../Functions/IsAdmin.php");
+ ?>
+
+<?php
+  $qs = new QuizService($pdo);
+  if(isAdmin($pdo)){
+    $quizzes = $qs->getAllQuizzes();
+
+  }
+  else if(!isAdmin($pdo) & isset($_SESSION["userid"])){
+    $userid = $_SESSION["userid"];
+    $quizzes = $qs->getAllQuizzesForUser($userid);
+  }else{
+    Header("Location: /Tutorial/Views/Auth/Login.php");
+  }
+// echo $_SESSION["userid"];
+?>
 
 
 <html lang="en">
@@ -12,7 +29,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>Tutorial | Quizzes</title>
+    <title>LearnHub | Quizzes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
 
@@ -71,8 +88,6 @@
                       <tbody class="bg-white divide-y divide-gray-200">
                         <!-- <template x-for="i in 10" :key="i"> -->
                         <?php 
-                            $qs = new QuizService($pdo);
-                            $quizzes = $qs->getAllQuizzes();
                             foreach ($quizzes as $quiz) { ?>
                               <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap">

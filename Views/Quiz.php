@@ -9,8 +9,8 @@
 <?php 
     $QuizName = "React Js";
     
-if (isset($_GET['qid']) && false ) {
     $qs = new QuizService($pdo);
+if (isset($_GET['qid']) ) {
     $quizId = $_GET['qid'];
     $quiz = $qs->getQuizById($quizId);
     $QuizName = $quiz->Name;

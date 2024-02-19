@@ -1,11 +1,13 @@
+<?php session_start(); ?>
 <?php
     include_once("../Config/Config.php");
     include_once('../Models/Quiz.php');
-    include_once("../Services/QuizService.php")
+    include_once("../Services/QuizService.php");
 ?>
 <?php
     $qs = new QuizService($pdo);
     $quizzes = $qs->getAllQuizzes();
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

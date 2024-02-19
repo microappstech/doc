@@ -4,15 +4,37 @@
 <?php require_once("../../Config/Config.php"); ?> 
 <?php require_once("../../Services/TutorialService.php"); ?>
 <?php require_once("../../Functions/IsLLogged.php"); ?> 
+<?php 
+                                require_once("../../Services/TutorialService.php");
+                                
+                                
+                                if(isset($_POST["submit"])){
+                                    if (isset($_FILES['Image']) && $_FILES['Image']['error'] === UPLOAD_ERR_OK) {
+                                        $tmpFilePath = $_FILES['Image']['tmp_name'];
+                                    
+                                        $imageData = file_get_contents($tmpFilePath);
+                                        $base64Encoded = "data:image/png;base64,".base64_encode($imageData);
+                                      } else {
+                                        $base64Encoded = "Null";
+                                      }
 
+
+                                    $TutorialService = new TutorialService($pdo);
+                                    $result = false;
+                                    
+                                    $result = $TutorialService->CreateTutorial($_POST["Title"],$_POST["content"],$base64Encoded,"User".$_SESSION["userid"], $_SESSION["userid"]);                                    
+                                    if($result){
+                                        echo "<script>window.alert('Craeted Successfuly')</script>";
+                                    }
+                                }
+                                 ?>
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/soumwej/assets/images/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>Tutorial | Dashbord</title>
+    <title>LearnHub | Tut</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
@@ -32,36 +54,32 @@
           >
             <h1 class="text-2xl font-semibold whitespace-nowrap text-gray-500">Add Tutorial</h1>
           </div>
-            <section class="bg-white pb-20 lg:pb-[120px] overflow-hidden relative z-10">
+            <section class="bg-white pb-20  overflow-hidden relative z-10">
                 <div class="container">
+                    <form method="post" enctype="multipart/form-data">
                     <div class="flex flex-wrap lg:justify-between -mx-4">
-                        <div class="w-full lg:w-1/2 xl:w-6/12 px-4 pt-6">
+                        <div class="w-full lg:w-1/3 xl:w-4/12 px-4 pt-6">
                             <div class="lg:mb-0 mx-2">
                                 <span class="block mb-4 text-base text-primary font-light text-muted">
-                                    Demo
+                                    Image
                                 </span>
-                                <div class="border border-1 border-gray-100 w-full min-h-screen rounded shadow-lg ">
+                                <input type="file" name="Image"
+                                    onchange="encodeImageFileAsURL(this)"
+                                    class=" w-full rounded py-3 mb-3 px-[14px] text-body-color text-base border border-[f0f0f0] 
+                                    outline-none focus-visible:shadow-none focus:border-primary " />
 
+                                <div class="border border-1 border-gray-100 w-full  h-full rounded shadow-lg ">
+                                    <img src="" id="showimg"  width="80%" class="mx-auto"/>
+                                    <hr />
+                                    <div class="">
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div> 
-                        <div class="w-full lg:w-1/2 xl:w-5/12 px-4 pt-12">
+                        <div class="w-full lg:w-1/2 xl:w-8/12 px-4 pt-12">
                             <div class="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
-                                <?php 
-                                require_once("../../Services/TutorialService.php");
                                 
-                                
-                                if(isset($_POST["submit"])){
-                                    $TutorialService = new TutorialService($pdo);
-                                    $result = false;
-                                    
-                                    $result = $TutorialService->CreateTutorial($_POST["Title"],$_POST["content"],$_POST["image"],"User".$_SESSION["userid"], $_SESSION["userid"]);                                    
-                                    if($result){
-                                        echo "<script>window.alert('Craeted Successfuly')</script>";
-                                    }
-                                }
-                                 ?>
-                            <form method="post">
                                 <div class="mb-6">
                                     <input
                                         type="text"
@@ -135,7 +153,7 @@
                                     Create
                                     </button>
                                 </div>
-                            </form>
+                            
                             <div>
                                 <span class="absolute -top-10 -right-9 z-[-1]">
                                     <svg
@@ -947,6 +965,7 @@
                             </div>
                         </div>
                     </div>
+                </form>
                 </div>
             </section>
         </main>
@@ -960,8 +979,19 @@
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://demo.Tutorial.com/windster/app.bundle.js"></script>
- </div>
+    
+</div>
 
 
+<script>
+function encodeImageFileAsURL(element) {
+  let file = element.files[0];
+  let reader = new FileReader();
+  reader.onloadend = function() {
+    document.getElementById('showimg').src = reader.result;
+  }
+  reader.readAsDataURL(file);
+}
+</script>
 </body>
 </html>
