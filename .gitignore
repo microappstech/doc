@@ -2,4 +2,5 @@ Config/Config copy.php
 Config/Config__.php
 Config/Config__.php
 Config/Config__.php
-Config/Config.php
+
+*node_modules/*
