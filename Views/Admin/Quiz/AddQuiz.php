@@ -62,7 +62,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>Tutorial | Dashbord</title>
+    <title><?php echo defined("PROJECT_NAME") ? PROJECT_NAME :  "LearnHub"; ?> | Add Quiz</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
 .radio input ~ label {
@@ -78,7 +79,7 @@
 <body>
    <?php  include("../../../Includes/NavBar.php") ?>
     <div class="flex overflow-hidden bg-white pt-16">
-       <?php  //include("../../../Includes/SideBar.php") ?>
+       <?php  include("../../../Includes/SideBar.php") ?>
        <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
        <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
        <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">

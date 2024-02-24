@@ -29,7 +29,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>LearnHub | Quizzes</title>
+    <title>
+    <?php echo defined("PROJECT_NAME") ? PROJECT_NAME :  "LearnHub"; ?> | Quizzes
+    </title>
     <script src="https://cdn.tailwindcss.com"></script>
     
 

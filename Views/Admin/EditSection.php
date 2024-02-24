@@ -28,7 +28,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
     <title>Tutorial | Dashbord</title>
-    <script src="https://cdn.tiny.cloud/1/1nsjvij0ax0do9hxr8dls5xcprj83fplbppgs433utmmndp7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/z58rtdl6q5qhl0s6pjo63dqtxdcqx6yftfoo4fqk4bggkj99/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
 <div>
@@ -122,9 +122,9 @@
                                         rows="6"
                                         id="editor"
                                         name="Content"
-                                        value="<?php echo $section->Content ?>"
                                         placeholder="Tutorial content"
                                         class=" w-full rounded py-3 px-[14px] text-body-color text-base border border-[f0f0f0] resize-none outline-none focus-visible:shadow-none focus:border-primary"
+                                        value="<?php echo $section->Content; ?>"
                                         ></textarea>
                                 </div>
                                 <div>

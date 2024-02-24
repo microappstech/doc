@@ -1,19 +1,26 @@
 <?php session_start() ?>
-<?php include_once("../../Config/Config.php") ?>
-<?php include_once("../../Constants.php") ?> 
-<?php include_once('../../Services/Auth/SecurityService.php') ?>
-<?php include_once("../../Functions/IsLLogged.php") ?>
+<?php 
+   include_once("../../Constants.php");
+   include_once("../../Config/Config.php");
+   include_once("../../Constants.php");
+   include_once('../../Services/Auth/SecurityService.php');
+   include_once("../../Services/GeneralServices.php");
+   include_once("../../Functions/IsLLogged.php") ?>
+
 <?php  
    $secSer = new SecurityService($pdo);
+   $GenService = new GeneralServices($pdo);
    $userRoles = $secSer->GetUserRole($_SESSION["userid"]);
-   
    $roles = array_column($userRoles, 'Rolename');
-   $authorized = in_array('Admin', $roles);
-   if(!$authorized){
-      echo "<script>window.alert('Your are not authorized')</script>";
-      //Header("Location:/Tutorial/index.php");
+   $IsAdmin = in_array('Admin', $roles);
+   
+   if($IsAdmin){
+      $NbQuizzes = $GenService->getNbQuizzes();
+      $NbTutorials = $GenService->getNbTutorials();
+      $NbUsers = $GenService->getNbUsers();
    }else{
-
+      $NbQuizzes = $GenService->getNbQuizzesByUser($_SESSION["userid"]);
+      $NbTutorials = $GenService->getNbTutorialsByUserId($_SESSION["userid"]);
    }
    
    ?>
@@ -21,13 +28,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/soumwej/assets/images/logo.png" type="image/x-icon">
-    <title>Soumwej</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
+    <title>
+      <?php echo defined("PROJECT_NAME") ? PROJECT_NAME :  "LearnHub"; ?>
+   </title>
+    
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
+  
 </head>
 <body>
    <?php  include("../../Includes/NavBar.php") ?>
@@ -39,34 +48,36 @@
              <div class="pt-6 px-4">
                 
                <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                   <div class="bg-orange-300 shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                   <?php if($IsAdmin){?>
+                     <div class="bg-orange-300 shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                       <div class="flex items-center">
                          <div class="flex-shrink-0">
-                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><?php echo "12" ?></span>
-                            <h3 class="text-base font-normal text-gray-600">Users Number</h3>
+                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><?php echo $NbUsers["NbUsers"] ?></span>
+                            <h3 class="text-base font-normal text-gray-900">Users Number</h3>
                          </div>
                         
                       </div>
-                   </div>
+                   </div> 
+                   <?php } ?>
                    <div class="bg-purple-300 shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                       <div class="flex items-center">
                          <div class="flex-shrink-0">
-                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><?php echo 15 ?> </span>
-                            <h3 class="text-base font-normal text-gray-600">Tutorials Number </h3>
+                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><?php echo $NbTutorials["NbTutorials"] ?> </span>
+                            <h3 class="text-base font-normal text-gray-900">Tutorials Number </h3>
                          </div>
                       </div>
                    </div>
                    <div class="bg-green-300 shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                       <div class="flex items-center">
                          <div class="flex-shrink-0">
-                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><?php echo "30" ?></span>
-                            <h3 class="text-base font-normal text-gray-600">Nombre de categories</h3>
+                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><?php echo $NbQuizzes["NbQuizzes"] ?></span>
+                            <h3 class="text-base font-normal text-gray-900">Quizzes Numbers</h3>
                          </div>
                   
                       </div>
                    </div>
                 </div>
-                <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
+                <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4 hidden">
                    <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
                       <!-- Charts -->
                       <div class="flow-root">

@@ -25,13 +25,16 @@
   }
   
 ?>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>LearnHub | Dashbord</title>
+    <title>
+    <?php echo defined("PROJECT_NAME") ? PROJECT_NAME :  "LearnHub"; ?>
+       | Tutorials
+      </title>
+
     <script src="https://cdn.tailwindcss.com"></script>    
 </head>
 <body>
@@ -49,7 +52,6 @@
               <div class="space-y-6 md:space-x-2 md:space-y-0">
                 <a
                 href="./AddTutorial.php"
-                target="_blank"
                 class="inline-flex items-center justify-center px-4 py-2 space-x-1 bg-blue-800 rounded-md shadow hover:bg-opacity-20"
               >
                 <span>

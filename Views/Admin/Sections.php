@@ -44,7 +44,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/soumwej/assets/images/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
-    <title>Tutorial | Dashbord</title>
+    <title> <?php echo defined("PROJECT_NAME") ? PROJECT_NAME :  "LearnHub"; ?> | Sections</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
 </head>
