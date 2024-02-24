@@ -35,10 +35,13 @@
     </div>
     <hr class="my-6 border-blueGray-300">
     <div class="flex flex-wrap items-center md:justify-between justify-center">
-      <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+      <div class="w-full md:w-4/12 px-4 mx-auto text-center postion-relative">
         <div class="text-sm text-blueGray-500 font-semibold py-1">
           Copyright © <span id="get-current-year">2024</span> <span class="text-orange-500">LearnHub</span>
         </div>
+      </div>
+      <div class="postion-absolute top-0 left-0">
+        <a href="#" class="bg-orange-500 text-white px-4 py-2 font-bold" style="font-family:courier new;">Shine Idea</a>
       </div>
     </div>
   </div>

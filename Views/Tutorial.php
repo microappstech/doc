@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 
-<?php
-
-?>
 <?php include("../Services/TutorialService.php") ?>
 <?php include("../Services/SectionService.php") ?>
 <?php include("../Config/Config.php") ?>
@@ -87,6 +84,7 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
             <!-- button navigation end  -->
+            <?php include_once("../Includes/Footer2.php") ?>
         </div>
     </div>
             

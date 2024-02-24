@@ -60,6 +60,6 @@
             </div>
         </div>
     </div>
-    <?php include("../Includes/Footer.php") ?>
+    <?php include("../Includes/Footer2.php") ?>
 </body>
 </html>
