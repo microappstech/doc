@@ -3,3 +3,8 @@ Config/Config__.php
 Config/Config__.php
 Config/Config__.php
 Config/Config.php
+node_modules/**/*
+node_modules/** */
+node_modules/tailwindcss/lib/lib/setupContextUtils.js
+node_modules/tailwindcss/lib/corePlugins.js
+node_modules/tailwindcss/lib/corePlugins.js
