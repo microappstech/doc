@@ -21,7 +21,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
-  <link rel="shortcut icon" href="/Tutorial/Assets/img/favIcon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/Assets/img/favIcon.png" type="image/x-icon">
   <title>LearnHub</title>  
 </head>
 <body class="bg-gray-100">
@@ -34,7 +34,7 @@
                 <?php 
                     foreach ($tutorials as $tutorial) { ?>
                         <?php if($tutorial->Active) { ?>
-                            <a href="<?php echo "/Tutorial/Views/Tutorial.php?id=".$tutorial->getId(); ?>" class="grid w-full min-w-1/3 transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25">
+                            <a href="<?php echo "/Views/Tutorial.php?id=".$tutorial->getId(); ?>" class="grid w-full min-w-1/3 transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25">
                                 <img src="<?php echo $tutorial->getImage() ?>"/>
                             </a>
                         <?php } else{ ?>

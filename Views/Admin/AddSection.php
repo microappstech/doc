@@ -20,7 +20,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="../../Assets/img/favIcon.png" type="image/x-icon">
     <title><?php echo defined("PROJECT_NAME") ? PROJECT_NAME :  "LearnHub"; ?> | Add Section</title>
-    <link rel="stylesheet" href="/Tutorial/Assets/css/prism_csharp.css">
+    <link rel="stylesheet" href="/Assets/css/prism_csharp.css">
     <script src="https://cdn.tiny.cloud/1/z58rtdl6q5qhl0s6pjo63dqtxdcqx6yftfoo4fqk4bggkj99/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>   

@@ -41,9 +41,9 @@
                             </h2>
                             <p class="text-base text-gray-700">The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn.</p>
                             <div class="mt-10 flex flex-col items-center md:flex-row">
-                                <a href="/Tutorial/Views/Tutorials.php" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-[#EC9131] px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-[#884907] focus:outline-none md:mr-4 md:mb-0 md:w-auto">
+                                <a href="/Views/Tutorials.php" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-[#EC9131] px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-[#884907] focus:outline-none md:mr-4 md:mb-0 md:w-auto">
                                     Start Learning</a>
-                                <a href="/Tutorial/Views/Quizzes.php" class="group inline-flex items-center font-semibold text-g1 underline text-[#EC9131]">
+                                <a href="/Views/Quizzes.php" class="group inline-flex items-center font-semibold text-g1 underline text-[#EC9131]">
                                     Test Yourself
                                 </a>
                             </div>
@@ -188,7 +188,7 @@
 
                 <div class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4" id="frameworks-integration">
                 <?php foreach($tutorials as $tuto){ ?>    
-                    <a class="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25" href="/Tutorial/Views/Tutorials.php">
+                    <a class="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25" href="/Views/Tutorials.php">
                         <span class="my-6 grid h-24 w-24 place-items-center">
                             <img src="<?php echo $tuto->getImage(); ?>" alt="">
                         </span>

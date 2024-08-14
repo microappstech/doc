@@ -18,7 +18,7 @@
     $userid = $_SESSION["userid"];
     $quizzes = $qs->getAllQuizzesForUser($userid);
   }else{
-    Header("Location: /Tutorial/Views/Auth/Login.php");
+    Header("Location: /Views/Auth/Login.php");
   }
 // echo $_SESSION["userid"];
 ?>

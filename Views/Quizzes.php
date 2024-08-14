@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="shortcut icon" href="/Tutorial/Assets/img/favIcon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/Assets/img/favIcon.png" type="image/x-icon">
     <title>LearnHub</title>
 </head>
 <body>
@@ -34,7 +34,7 @@
                                 <?php
                                 foreach($quizzes as $quiz ){ ?>
                                     <div class="relative group h-48 flex   flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                                    <a href="<?php echo "/Tutorial/Views/Quiz2.php?qid=".$quiz->Id; ?>" class="block">
+                                    <a href="<?php echo "/Views/Quiz2.php?qid=".$quiz->Id; ?>" class="block">
                                         <div class="h-28">
                                             <div class="absolute -top-20 lg:top-[-10%] left-[5%] z-40  group-hover:top-[-40%] group-hover:opacity-[0.9] duration-300 w-[90%] bg-gray-100  h-48 bg-light-600 rounded-xl justify-items-center align-middle">
                                                 <img src="<?php echo $quiz->Image ?>"

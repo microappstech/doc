@@ -26,7 +26,7 @@
     $Tutorials = $tutoServ->getTutorialsForUser($userid);
   }
   else{
-    Header("Location : /Tutorial/Views/Auth/login.php");
+    Header("Location : /Views/Auth/login.php");
   }
   
   
@@ -65,7 +65,7 @@
             <h1 class="text-2xl font-semibold whitespace-nowrap">Sections</h1>
             <div class="form-control px-5 w-full">
               <div class="max-w-2xl mx-auto ">
-                  <select id="tutorials" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                  <select id="tutorials" onchange="TuroialChanged" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                     <option selected>Choose a tutorial</option>
                     <?php foreach($Tutorials as $tuto) { ?>    
                       <option value="<?php echo $tuto->getId() ?>"><?php echo $tuto->getTitle() ?></option>
@@ -76,7 +76,7 @@
             </div>
             <div class="px-5 md:w-60">
               <a
-              href="<?php echo "/Tutorial/Views/Admin/AddSection.php" ?>"
+              href="<?php echo "/Views/Admin/AddSection.php" ?>"
               class="inline-flex items-center justify-center px-4 py-2 space-x-1 bg-blue-800 rounded-md shadow hover:bg-opacity-20"
             >
               <span>
@@ -156,7 +156,7 @@
                               <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><?php echo $section->Id ?></td>
                               
                               <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                <a href="/Tutorial/Views/Admin/EditSection.php?SecId=<?php echo $section->Id ?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="/Views/Admin/EditSection.php?SecId=<?php echo $section->Id ?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 <form  method="post">
                                   <input name="sectionToDelete" value="<?php echo $section->Id ?>" class="hidden"/>
                                   <button type="delete" 
@@ -202,7 +202,7 @@
 
                   // Send the data back to the server with another XMLHttpRequest
                    var xhr2 = new XMLHttpRequest();
-                   xhr2.open('POST',"/Tutorial/Views/Admin/Sections.php",  true);
+                   xhr2.open('POST',"/Views/Admin/Sections.php",  true);
                    xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                    xhr2.onload = function(){
                     if(xhr2.status === 200){

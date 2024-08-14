@@ -15,6 +15,7 @@ if (isset($_GET['id'])) {
     $Tutorial = $TutorialService->getTutorial($tutorialId);
     $SectionSer = new SectionService($pdo);
     $sections = $SectionSer->getSectionsByTutorialId($tutorialId);
+    // var_dump($sections);
     $DataReady = true;
 } else { ?>
     <a href="<?php echo $routes["/tutorials"] ?>" class="bg-primary px-10 py-2">Back</a>
@@ -47,7 +48,7 @@ if (isset($_GET['id'])) {
        <?php require("../Components/SideBar.php") ?>
        <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
     <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
-       <div class="mainHeader h-40 border border-1 border-gray-50">
+       <div class="mainHeader h-40 bg-white  border border-1 border-gray-50">
             <img src="../Assets/img/logo2.png" class="w-50 mx-auto" style="height: 100%;" />
        </div>
            <?php if ($DataReady) { ?>
@@ -55,7 +56,7 @@ if (isset($_GET['id'])) {
                 <main class="mt-8 p-6 w-full" id="mainContent">
                     
                 </main>
-                <div class="ads w-[25%] px-2 text-justify" style="border:8px #f6f6f6 solid">
+                <div class="ads d-none hidden w-[25%] px-2 text-justify" style="border:8px #f6f6f6 solid">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam et nemo sapiente deserunt ab iste fugiat totam magnam nisi exercitationem illum minima quas porro inventore a, sed itaque! Quam.
                 </div>
                 <div class="leftside width-100 h-screen ">

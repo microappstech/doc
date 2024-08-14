@@ -20,7 +20,7 @@
     if(isset($_POST["register"])) {
         try{
           if(IsDevelopement() && $_POST["username"] =="admin" && $_POST["password"]){
-            header("Location:"."/Tutorial/Views/Admin/index.php");
+            header("Location:"."/Views/Admin/index.php");
               $_SESSION["logged"]=true;
               $_SESSION["userid"]=$result["id"];
           }else{        
@@ -33,7 +33,7 @@
               include ("../Components/Alert.php");
             }
             else if($result!=false & $result !== null) {
-                header("Location:"."/Tutorial/Views/Admin/index.php");
+                header("Location:"."/Views/Admin/index.php");
                 $_SESSION["logged"]=true;
                 $_SESSION["userid"]=$result["id"];
             }
@@ -141,7 +141,7 @@
                     >Recover password!</a
                   >
                   <a
-                    href="/Tutorial/Views/Register.php"
+                    href="/Views/Register.php"
                     class="w-full text-center font-medium text-gray-500"
                     >Sign up!</a
                   >

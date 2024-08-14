@@ -6,7 +6,7 @@
     $secServ = new SecurityService($pdo);
     if(isset($_POST["register"])){
         $resultReg = $secServ->Rgister($_POST["email"],$_POST["password"],$_POST["name"]);
-        Header("Location:/Tutorial/Views/Auth/Login.php");
+        Header("Location:/Views/Auth/Login.php");
     }
  ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
             <div class="bg-gray-200 w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg">
 
                 <h2 class="text-center text-2xl font-bold tracking-wide text-gray-800">Sign Up</h2>
-                <p class="text-center text-sm text-gray-600 mt-2">Already have an account? <a href="/Tutorial/Views/Auth/login.php" class="text-blue-600 hover:text-blue-700 hover:underline" title="Sign In">Sign in here</a></p>
+                <p class="text-center text-sm text-gray-600 mt-2">Already have an account? <a href="/Views/Auth/login.php" class="text-blue-600 hover:text-blue-700 hover:underline" title="Sign In">Sign in here</a></p>
 
                 <form class="my-8 text-sm" method="post">
                     <div class="flex flex-col my-4">
@@ -125,7 +125,7 @@
             }
             disableBtn();
         }
-        function validatePassword(password) {
+        function validatePassword(password){
             const minLength = 8;
             const uppercaseRegex = /[A-Z]/;
             const lowercaseRegex = /[a-z]/;
@@ -138,8 +138,7 @@
             const hasLowercase = lowercaseRegex.test(password);
             const hasDigit = digitRegex.test(password);
             const hasSpecialChar = specialCharRegex.test(password);
-
-            // Return true if all requirements are met, otherwise false
+            if()
             return meetsLength && hasUppercase && hasLowercase && hasDigit && hasSpecialChar;
         }
 

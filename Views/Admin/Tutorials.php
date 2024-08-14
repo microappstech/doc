@@ -21,7 +21,7 @@
     $tutorials = $tt->getTutorialsForUser($userid);
   }
   else{
-    Header("Location : /Tutorial/Views/Auth/login.php");
+    Header("Location : /Views/Auth/login.php");
   }
   
 ?>
