@@ -8,7 +8,7 @@ This project is created using PHP for the backend, Tailwind CSS for styling, and
 
 <h1 style="color: orange;">This project is still under development.</h1>
 
-To contribute tutorials as a teacher, you need to log in at: [www.hamza-mouddakir.tech/Tutorial](www.hamza-mouddakir.tech/Tutorial). Please make sure to follow the [Rules](#rules).
+To contribute tutorials as a teacher, you need to log in at: [www.goldev.dev/Tutorial](www.hamza-mouddakir.tech/Tutorial). Please make sure to follow the [Rules](#rules).
 
 ---
 
